@@ -9,6 +9,7 @@ import pandas as pd
 from fastapi import FastAPI, HTTPException, Query, Request
 from pydantic import BaseModel, Field, ConfigDict
 from .analyst import Analyst
+from .archive import read_archive, SOURCE as ARCHIVE_SOURCE
 from fastapi.responses import FileResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 from .pipeline import ROOT, DEFAULT_DATA, run
@@ -85,6 +86,20 @@ def create_app(data=DEFAULT_DATA, out=ROOT / 'outputs'):
     app = FastAPI(title='MoneyGraph Investigator', version='0.3.0')
     app.state.store = store
     app.state.analyst = Analyst(store)
+
+    @app.get('/ai-archive')
+    def ai_archive_page():
+        return FileResponse(ROOT / 'web/ai-archive.html')
+
+    @app.get('/api/analyst/archive')
+    def ai_archive():
+        return read_archive(store)
+
+    @app.get('/api/analyst/archive/download')
+    def ai_archive_download():
+        if not read_archive(store)['available']:
+            raise HTTPException(404, 'Архив недоступен')
+        return FileResponse(ARCHIVE_SOURCE, media_type='application/json', filename='recorded-real-ai-results.json')
 
     @app.get('/api/analyst/status')
     def analyst_status():

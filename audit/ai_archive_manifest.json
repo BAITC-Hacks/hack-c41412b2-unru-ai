@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "title": "Результаты реальной AI-обработки PHASE 5",
+  "run_date": "2026-09-23",
+  "run_time_note": "Точное время исходных API-вызовов не сохранялось.",
+  "archived_at_utc": "2026-09-23T10:05:41.110576+00:00",
+  "source_commit": "6af918a",
+  "source_path": "audit/phase5_live_verification.json",
+  "source_sha256": "7556881328acc8cdbc0435eec3ac71c8c78236d5c29a2ae18eed1369924050e9",
+  "input_sha256": {
+    "nodes.parquet": "d2a45b0df6e9352832d5fb09839d10b9e23f898156c3bab263b051b31cc0296d",
+    "edges.parquet": "4e71dde5cd3115bcb26e91202665532ee6581cf8233a9fc8059ea59fb7358a38",
+    "transactions.parquet": "c30c5317b5439591dde86f2058dc47a3d19b2900c055ded994fe547f6fb7e7da"
+  },
+  "calculation_sha256": {
+    "nodes_roles.csv": "6546f308c2a18aa1ffd439806ed2cace53283462532429d5cc99c7c636993591",
+    "clusters.csv": "80eccad28ac4c5e2f47bfb81a17c84ef3a840135b24d9f4c799ac37df268a0ae",
+    "top_nodes.csv": "20197ec57bd1d27b371053be3e1de4e8ef8f59de7f8b05817d92c45ca950452b",
+    "node_context.json": "240c6bd249f62f8ce79a0e91b6ed5b21d50860e45bfedef34f048c89146b388c",
+    "structural_evidence.json": "6b9d26501334b6bfc3a22c61a02dec9ddeec464f7f382b250cfd702ccb6195b5",
+    "seed_convergence.json": "25934fccdd53f848b591ec49ced1992188612ae80cd2ff2d41b394db64d040c9"
+  },
+  "provenance_note": "Сохранённые ответы реальных запросов к OpenAI Responses API при проверке PHASE 5. Это архив шести демо-вопросов, не обработка всех узлов и не новый вызов модели. Хеш подтверждает неизменность локальной записи, но не является подписью OpenAI. Исходные полные HTTP-ответы провайдера и тела tool outputs не сохранялись.",
+  "data_policy": "Просмотр архива не вызывает OpenAI, не требует ключа и не расходует API-кредиты."
+}

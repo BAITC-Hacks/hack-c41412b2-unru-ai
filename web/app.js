@@ -136,6 +136,7 @@ boot();
 let aiSequence=0, aiController=null, aiAvailable=false;
 function resetAnalystNode(gid) {
   aiSequence++; if(aiController) aiController.abort(); aiController=null;
+  $('ai-archive-link').href='/ai-archive?gid='+encodeURIComponent(gid);
   $('ai-gid').textContent=gid; $('ai-answer').replaceChildren(); $('ai-activity').textContent='';
   $('ai-submit').disabled=!aiAvailable;
 }
