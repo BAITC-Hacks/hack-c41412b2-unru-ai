@@ -1,0 +1,14 @@
+const {readFileSync}=require('node:fs'),{runInNewContext}=require('node:vm'),assert=require('node:assert/strict');
+const ctx={MoneyGraphUI:{localize:r=>({transit:'транзитный узел',coordinator:'координирующий узел'}[r]||r)},Intl};
+runInNewContext(readFileSync('web/edge-inspector.js','utf8'),ctx);
+const a='100000003635170100',b='100000003321423100',nodes=new Map([[a,{role:'transit'}],[b,{role:'coordinator'}]]),edge={src:a,dst:b,sum_kzt:100000,n_tx:2};
+let html=ctx.edgeFactsHTML(edge,nodes,a);
+assert.ok(html.includes(a)&&html.includes(b)&&html.includes('100 000 ₸')&&html.includes('Переводов: 2'));
+assert.ok(html.includes('Исходящий')&&html.includes('транзитный узел')&&html.includes('координирующий узел'));
+console.log('Edge tooltip: exact IDs, amounts, counts and localized roles');
+assert.ok(ctx.edgeFactsHTML(edge,nodes,b).includes('Входящий'));
+console.log('Edge tooltip: direction relative to selected node');
+html=ctx.edgeFactsHTML(edge,nodes,a,true);assert.ok(html.includes(`data-edge-gid="${a}"`)&&html.includes(`data-edge-gid="${b}"`));
+console.log('Edge details: exact node navigation links');
+html=ctx.edgeFactsHTML({...edge,src:'<img onerror=x>'},nodes,a,true);assert.ok(!html.includes('<img'));assert.ok(html.includes('&lt;img'));
+console.log('Edge tooltip: text escaped, including unknown nodes');

@@ -7,6 +7,7 @@ const queueNames = {INVESTIGATE_NOW:'ПРОВЕРИТЬ СЕЙЧАС',REQUEST_MO
 const queueDescriptions = {INVESTIGATE_NOW:'Высокий приоритет и достаточные наблюдения для начала проверки.',REQUEST_MORE_DATA:'Важные узлы: ограничения данных мешают интерпретации.',MONITOR:'Ниже порога приоритета. Это не означает отсутствие риска.'};
 const fmt = value => new Intl.NumberFormat('ru-RU',{maximumFractionDigits:2}).format(value);
 const fixed = value => value.toFixed(3);
+const edgeInspector=createEdgeInspector(gid=>selectNode(gid));
 const state = {queue:'INVESTIGATE_NOW',offset:0,limit:25,total:0,gid:null,nodeSeq:0,queueSeq:0,searchSeq:0,zoom:1,clusterHighlight:false};
 const badge = (value, label=value) => `<span class="badge ${esc(value)}">${esc(label)}</span>`;
 const dot = role => `<i class="role-dot" style="background:${colors[role] || colors.peripheral}"></i>`;
@@ -38,7 +39,7 @@ async function loadQueue() {
 async function selectNode(gid) {
   if (typeof gid !== 'string') throw new Error('GID must remain an exact string');
   const request = ++state.nodeSeq;
-  state.gid = gid; state.zoom = 1;
+  state.gid = gid; state.zoom = 1; edgeInspector.reset();
   clearError(); $('search-results').hidden = true;
   $('node-card').innerHTML = '<div class="loading">Загружаем карточку…</div>';
   $('graph-empty').textContent = 'Загружаем окружение…'; $('graph-empty').hidden=false;
@@ -181,12 +182,16 @@ function renderGraph(data) {
   svg.append(svgEl('text',{x:970,y:40,class:'node-label'},'ПОЛУЧАТЕЛИ'));
   const maxLog=Math.max(1,...data.edges.map(e=>Math.log1p(e.sum_kzt)));
   const edgeLabels=[],labelBoxes=[];
+  const edgeNodes=new Map(data.nodes.map(n=>[n.gid,n]));
   data.edges.forEach(e=>{
     const a=positions.get(e.src),b=positions.get(e.dst);
     const reciprocal=data.edges.some(other=>other.src===e.dst&&other.dst===e.src);
     const geometry=edgeGeometry(a,b,e.src===data.center_gid?26:15,e.dst===data.center_gid?26:15,reciprocal);
     const line=svgEl('path',{d:geometry.path,fill:'none',stroke:'#7890aa','stroke-width':2+3*Math.log1p(e.sum_kzt)/maxLog,opacity:.8,'marker-end':'url(#arrow)',class:'graph-edge','data-src':e.src,'data-dst':e.dst});
-    line.append(svgEl('title',{},`${e.src} → ${e.dst}\n${fmt(e.sum_kzt)} KZT · ${e.n_tx} переводов`));svg.append(line);
+    svg.append(line);
+    const hit=svgEl('path',{d:geometry.path,fill:'none',stroke:'transparent','stroke-width':18,'pointer-events':'stroke',class:'edge-hit',tabindex:0,role:'button','aria-label':`Связь ${e.src} → ${e.dst}, ${fmt(e.sum_kzt)} KZT, переводов ${e.n_tx}`,'aria-describedby':'edge-tooltip'});
+    edgeInspector.bind(hit,line,e,edgeNodes,data.center_gid);svg.append(hit);
+
     if(data.edges.length<=8) {
       const label=`${fmt(e.sum_kzt)} ₸`,width=label.length*12+16;
       const origin={...geometry.label};
