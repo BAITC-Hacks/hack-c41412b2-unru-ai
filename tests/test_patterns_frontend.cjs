@@ -1,0 +1,17 @@
+const {readFileSync}=require('node:fs');
+const {runInNewContext}=require('node:vm');
+const assert=require('node:assert/strict');
+const source=readFileSync('web/app.js','utf8');
+const renderer=source.slice(source.indexOf('function renderPatterns('),source.indexOf('function attachPatternRoutes('));
+const context={fmt:v=>String(v),esc:v=>String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))};
+runInNewContext(renderer,context);
+assert.match(context.renderPatterns(null),/N\/A/);
+const data=JSON.parse(readFileSync('outputs/patterns.json','utf8'));
+const boundary=data.nodes.find(n=>n.depth===4);
+let html=context.renderPatterns(boundary);
+assert.match(html,/Исходящие CENSORED/);assert.match(html,/N\/A · CENSORED/);assert.ok(!html.includes('NaN'));
+const normal=data.nodes.find(n=>n.routes.repeated_chain_count>0);
+html=context.renderPatterns(normal);assert.match(html,/data-path=/);assert.match(html,/пар дат/);
+const hostile=JSON.parse(JSON.stringify(normal));hostile.routes.repeated_chain_samples[0].gids[0]='<img onerror=alert(1)>';
+assert.ok(!context.renderPatterns(hostile).includes('<img'));
+console.log('4 pattern renderer checks passed (missing, censored, route, escaping)');

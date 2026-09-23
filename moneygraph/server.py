@@ -75,6 +75,24 @@ class Store:
                     self.stability_summary={'available':False,'message':'Stability относится к другой версии данных/расчётов; пересчитайте диагностику.'}
             except (OSError,ValueError,KeyError,TypeError):
                 self.stability_summary={'available':False,'message':'Файл Stability повреждён; основная аналитика доступна.'}
+        self.patterns_summary = {'available':False,'message':'Паттерны не рассчитаны: python -m moneygraph.patterns'}
+        for node in self.nodes.values(): node['patterns'] = None
+        pattern_path = self.out / 'patterns.json'
+        if pattern_path.is_file():
+            try:
+                patterns = json.loads(pattern_path.read_text())
+                valid = patterns['schema_version'] == 1 and patterns['input_sha256'] == self.report['input_sha256']
+                valid = valid and len(patterns['nodes']) == len(self.nodes) and {r['gid'] for r in patterns['nodes']} == set(self.nodes)
+                valid = valid and all(isinstance(r[k],dict) for r in patterns['nodes'] for k in ['temporal','routes','anomalies'])
+                if valid:
+                    summary = {'available':True,'summary':patterns['summary'],'period':patterns['period'],
+                        'definitions':patterns['definitions'],'elapsed_seconds':patterns['elapsed_seconds']}
+                    for r in patterns['nodes']: self.nodes[r['gid']]['patterns'] = r
+                    self.patterns_summary = summary
+                else:
+                    self.patterns_summary = {'available':False,'message':'Паттерны относятся к другой версии данных; пересчитайте диагностику.'}
+            except (OSError,ValueError,KeyError,TypeError):
+                self.patterns_summary = {'available':False,'message':'Файл паттернов повреждён; основная аналитика доступна.'}
         self.edges, self.adj = [], {gid: set() for gid in self.nodes}
         for row in pd.read_parquet(Path(data) / 'edges.parquet').itertuples(index=False):
             edge = {'src': str(row.src), 'dst': str(row.dst), 'sum_kzt': float(row.sum_kzt), 'n_tx': int(row.n_tx)}
@@ -143,6 +161,10 @@ def create_app(data=DEFAULT_DATA, out=ROOT / 'outputs'):
         if n not in REMOVAL_SIZES:
             raise HTTPException(422, 'Supported N: 0, 1, 3, 5, 10')
         return copy.deepcopy(app.state.resilience[n])
+
+    @app.get('/api/patterns/summary')
+    def patterns_summary():
+        return store.patterns_summary
 
     @app.get('/api/stability/summary')
     def stability_summary():

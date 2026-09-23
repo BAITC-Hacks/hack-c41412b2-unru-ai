@@ -1,0 +1,1342 @@
+{
+  "phase": 8,
+  "date": "2026-09-23",
+  "summary": {
+    "nodes": 2248,
+    "repeated_chains": 86,
+    "reciprocal_pairs": 177,
+    "short_cycles": 210,
+    "cycles_truncated": false,
+    "cycle_expansions": 61600,
+    "nodes_with_gather_scatter": 8,
+    "nodes_with_peer_flags": 98,
+    "nodes_with_equal_amount_distribution": 6
+  },
+  "elapsed_seconds": 0.2565,
+  "patterns_sha256": "a0582015c2ccb69f77ea38a0d47b65d38ab3e80f1608c9cd7f64df3f8153122a",
+  "baseline_artifacts_unchanged": true,
+  "examples": {
+    "100000008603629100": {
+      "gid": "100000008603629100",
+      "depth": 2,
+      "is_seed": false,
+      "temporal": {
+        "eligible_in_kzt": 1681300.0,
+        "compatible_out_kzt": 1550917.0,
+        "compatibility_fraction": 0.9224510795217986,
+        "right_censored_in_kzt": 136000.0,
+        "status": "PARTIAL",
+        "observed_in_kzt": 1817300.0,
+        "same_day_overlap_kzt": 1474333.0,
+        "same_day_order": "UNKNOWN",
+        "daily": [
+          {
+            "date": "2026-07-03",
+            "in_kzt": 60000.0,
+            "out_kzt": 0.0,
+            "senders": 1,
+            "recipients": 0
+          },
+          {
+            "date": "2026-07-04",
+            "in_kzt": 0.0,
+            "out_kzt": 157009.0,
+            "senders": 0,
+            "recipients": 3
+          },
+          {
+            "date": "2026-07-06",
+            "in_kzt": 0.0,
+            "out_kzt": 55656.0,
+            "senders": 0,
+            "recipients": 1
+          },
+          {
+            "date": "2026-07-07",
+            "in_kzt": 66000.0,
+            "out_kzt": 76067.0,
+            "senders": 1,
+            "recipients": 2
+          },
+          {
+            "date": "2026-07-08",
+            "in_kzt": 0.0,
+            "out_kzt": 53030.0,
+            "senders": 0,
+            "recipients": 1
+          },
+          {
+            "date": "2026-07-09",
+            "in_kzt": 0.0,
+            "out_kzt": 45000.0,
+            "senders": 0,
+            "recipients": 1
+          },
+          {
+            "date": "2026-07-10",
+            "in_kzt": 64028.0,
+            "out_kzt": 187320.0,
+            "senders": 4,
+            "recipients": 3
+          },
+          {
+            "date": "2026-07-12",
+            "in_kzt": 83690.0,
+            "out_kzt": 233767.0,
+            "senders": 2,
+            "recipients": 3
+          },
+          {
+            "date": "2026-07-13",
+            "in_kzt": 50000.0,
+            "out_kzt": 0.0,
+            "senders": 1,
+            "recipients": 0
+          },
+          {
+            "date": "2026-07-14",
+            "in_kzt": 53339.0,
+            "out_kzt": 0.0,
+            "senders": 2,
+            "recipients": 0
+          },
+          {
+            "date": "2026-07-15",
+            "in_kzt": 13126.0,
+            "out_kzt": 115107.0,
+            "senders": 1,
+            "recipients": 3
+          },
+          {
+            "date": "2026-07-16",
+            "in_kzt": 68000.0,
+            "out_kzt": 0.0,
+            "senders": 2,
+            "recipients": 0
+          },
+          {
+            "date": "2026-07-17",
+            "in_kzt": 0.0,
+            "out_kzt": 415987.0,
+            "senders": 0,
+            "recipients": 4
+          },
+          {
+            "date": "2026-07-18",
+            "in_kzt": 103497.0,
+            "out_kzt": 456151.0,
+            "senders": 3,
+            "recipients": 7
+          },
+          {
+            "date": "2026-07-19",
+            "in_kzt": 75341.0,
+            "out_kzt": 200652.0,
+            "senders": 2,
+            "recipients": 3
+          },
+          {
+            "date": "2026-07-20",
+            "in_kzt": 0.0,
+            "out_kzt": 368073.0,
+            "senders": 0,
+            "recipients": 4
+          },
+          {
+            "date": "2026-07-21",
+            "in_kzt": 149729.0,
+            "out_kzt": 91351.0,
+            "senders": 3,
+            "recipients": 3
+          },
+          {
+            "date": "2026-07-22",
+            "in_kzt": 0.0,
+            "out_kzt": 306719.0,
+            "senders": 0,
+            "recipients": 5
+          },
+          {
+            "date": "2026-07-23",
+            "in_kzt": 385900.0,
+            "out_kzt": 479000.0,
+            "senders": 4,
+            "recipients": 2
+          },
+          {
+            "date": "2026-07-24",
+            "in_kzt": 85900.0,
+            "out_kzt": 214000.0,
+            "senders": 2,
+            "recipients": 1
+          },
+          {
+            "date": "2026-07-25",
+            "in_kzt": 89500.0,
+            "out_kzt": 363050.0,
+            "senders": 3,
+            "recipients": 5
+          },
+          {
+            "date": "2026-07-26",
+            "in_kzt": 0.0,
+            "out_kzt": 114539.0,
+            "senders": 0,
+            "recipients": 3
+          },
+          {
+            "date": "2026-07-27",
+            "in_kzt": 200000.0,
+            "out_kzt": 266675.0,
+            "senders": 1,
+            "recipients": 5
+          },
+          {
+            "date": "2026-07-28",
+            "in_kzt": 80000.0,
+            "out_kzt": 153307.0,
+            "senders": 2,
+            "recipients": 4
+          },
+          {
+            "date": "2026-07-29",
+            "in_kzt": 53250.0,
+            "out_kzt": 0.0,
+            "senders": 2,
+            "recipients": 0
+          },
+          {
+            "date": "2026-07-30",
+            "in_kzt": 136000.0,
+            "out_kzt": 292940.0,
+            "senders": 2,
+            "recipients": 4
+          },
+          {
+            "date": "2026-07-31",
+            "in_kzt": 0.0,
+            "out_kzt": 340756.0,
+            "senders": 0,
+            "recipients": 4
+          }
+        ],
+        "gather_scatter_count": 5,
+        "gather_scatter_samples": [
+          {
+            "date": "2026-07-10",
+            "senders": 4,
+            "following_1_2_day_recipients": 3,
+            "in_kzt": 64028.0,
+            "following_out_kzt": 233767.0
+          },
+          {
+            "date": "2026-07-18",
+            "senders": 3,
+            "following_1_2_day_recipients": 7,
+            "in_kzt": 103497.0,
+            "following_out_kzt": 568725.0
+          },
+          {
+            "date": "2026-07-21",
+            "senders": 3,
+            "following_1_2_day_recipients": 7,
+            "in_kzt": 149729.0,
+            "following_out_kzt": 785719.0
+          },
+          {
+            "date": "2026-07-23",
+            "senders": 4,
+            "following_1_2_day_recipients": 6,
+            "in_kzt": 385900.0,
+            "following_out_kzt": 577050.0
+          },
+          {
+            "date": "2026-07-25",
+            "senders": 3,
+            "following_1_2_day_recipients": 8,
+            "in_kzt": 89500.0,
+            "following_out_kzt": 381214.0
+          }
+        ],
+        "activity_burst": {
+          "status": "AVAILABLE",
+          "flag": false,
+          "peak_date": "2026-07-18",
+          "peak_tx_count": 11,
+          "peak_share": 0.09243697478991597
+        },
+        "limitation": "Maximum compatible amount, not proven pass-through. Incoming buckets require complete +2 day follow-up. Same-day overlap is separate and must not be added. Month/bank/threshold/upstream incomplete."
+      },
+      "routes": {
+        "repeated_chain_count": 6,
+        "repeated_chain_samples": [
+          {
+            "gids": [
+              "100000004847758100",
+              "100000008603629100",
+              "100000008739887100"
+            ],
+            "support_episodes": 2,
+            "episodes": [
+              {
+                "in_date": "2026-07-19",
+                "out_date": "2026-07-21"
+              },
+              {
+                "in_date": "2026-07-21",
+                "out_date": "2026-07-22"
+              }
+            ]
+          },
+          {
+            "gids": [
+              "100000005048668100",
+              "100000008603629100",
+              "100000005830339100"
+            ],
+            "support_episodes": 2,
+            "episodes": [
+              {
+                "in_date": "2026-07-16",
+                "out_date": "2026-07-18"
+              },
+              {
+                "in_date": "2026-07-25",
+                "out_date": "2026-07-27"
+              }
+            ]
+          },
+          {
+            "gids": [
+              "100000005910114100",
+              "100000008603629100",
+              "100000008739887100"
+            ],
+            "support_episodes": 2,
+            "episodes": [
+              {
+                "in_date": "2026-07-19",
+                "out_date": "2026-07-21"
+              },
+              {
+                "in_date": "2026-07-21",
+                "out_date": "2026-07-22"
+              }
+            ]
+          },
+          {
+            "gids": [
+              "100000007639767100",
+              "100000008603629100",
+              "100000008279405100"
+            ],
+            "support_episodes": 2,
+            "episodes": [
+              {
+                "in_date": "2026-07-18",
+                "out_date": "2026-07-20"
+              },
+              {
+                "in_date": "2026-07-28",
+                "out_date": "2026-07-30"
+              }
+            ]
+          },
+          {
+            "gids": [
+              "100000008086440100",
+              "100000008603629100",
+              "100000005830339100"
+            ],
+            "support_episodes": 2,
+            "episodes": [
+              {
+                "in_date": "2026-07-16",
+                "out_date": "2026-07-18"
+              },
+              {
+                "in_date": "2026-07-24",
+                "out_date": "2026-07-25"
+              }
+            ]
+          },
+          {
+            "gids": [
+              "100000000437046100",
+              "100000008686313100",
+              "100000008603629100"
+            ],
+            "support_episodes": 2,
+            "episodes": [
+              {
+                "in_date": "2026-07-24",
+                "out_date": "2026-07-25"
+              },
+              {
+                "in_date": "2026-07-26",
+                "out_date": "2026-07-28"
+              }
+            ]
+          }
+        ],
+        "reciprocal_count": 7,
+        "reciprocal_samples": [
+          {
+            "gids": [
+              "100000001138283100",
+              "100000008603629100",
+              "100000001138283100"
+            ],
+            "forward_kzt": 40000.0,
+            "reverse_kzt": 81805.0
+          },
+          {
+            "gids": [
+              "100000001857829100",
+              "100000008603629100",
+              "100000001857829100"
+            ],
+            "forward_kzt": 26000.0,
+            "reverse_kzt": 408000.0
+          },
+          {
+            "gids": [
+              "100000002723538100",
+              "100000008603629100",
+              "100000002723538100"
+            ],
+            "forward_kzt": 85000.0,
+            "reverse_kzt": 70647.0
+          },
+          {
+            "gids": [
+              "100000004351795100",
+              "100000008603629100",
+              "100000004351795100"
+            ],
+            "forward_kzt": 77000.0,
+            "reverse_kzt": 22418.0
+          },
+          {
+            "gids": [
+              "100000004847758100",
+              "100000008603629100",
+              "100000004847758100"
+            ],
+            "forward_kzt": 42000.0,
+            "reverse_kzt": 25612.0
+          },
+          {
+            "gids": [
+              "100000007639767100",
+              "100000008603629100",
+              "100000007639767100"
+            ],
+            "forward_kzt": 98250.0,
+            "reverse_kzt": 23722.0
+          },
+          {
+            "gids": [
+              "100000008603629100",
+              "100000008686313100",
+              "100000008603629100"
+            ],
+            "forward_kzt": 75693.0,
+            "reverse_kzt": 55500.0
+          }
+        ],
+        "short_cycle_count": 66,
+        "short_cycle_samples": [
+          {
+            "gids": [
+              "100000000437046100",
+              "100000004070318100",
+              "100000008603629100",
+              "100000004351795100",
+              "100000000437046100"
+            ],
+            "length": 4
+          },
+          {
+            "gids": [
+              "100000000437046100",
+              "100000004070318100",
+              "100000008603629100",
+              "100000007639767100",
+              "100000000437046100"
+            ],
+            "length": 4
+          },
+          {
+            "gids": [
+              "100000000437046100",
+              "100000004070318100",
+              "100000008603629100",
+              "100000008686313100",
+              "100000000437046100"
+            ],
+            "length": 4
+          },
+          {
+            "gids": [
+              "100000000437046100",
+              "100000007639767100",
+              "100000008603629100",
+              "100000004351795100",
+              "100000000437046100"
+            ],
+            "length": 4
+          },
+          {
+            "gids": [
+              "100000000437046100",
+              "100000007639767100",
+              "100000008603629100",
+              "100000008686313100",
+              "100000000437046100"
+            ],
+            "length": 4
+          },
+          {
+            "gids": [
+              "100000000437046100",
+              "100000008603629100",
+              "100000004351795100",
+              "100000000437046100"
+            ],
+            "length": 3
+          },
+          {
+            "gids": [
+              "100000000437046100",
+              "100000008603629100",
+              "100000007639767100",
+              "100000000437046100"
+            ],
+            "length": 3
+          },
+          {
+            "gids": [
+              "100000000437046100",
+              "100000008603629100",
+              "100000008686313100",
+              "100000000437046100"
+            ],
+            "length": 3
+          },
+          {
+            "gids": [
+              "100000000437046100",
+              "100000008686313100",
+              "100000008603629100",
+              "100000004351795100",
+              "100000000437046100"
+            ],
+            "length": 4
+          },
+          {
+            "gids": [
+              "100000000437046100",
+              "100000008686313100",
+              "100000008603629100",
+              "100000007639767100",
+              "100000000437046100"
+            ],
+            "length": 4
+          }
+        ],
+        "cycles_truncated": false,
+        "interpretation": "Observed relationships; cycles have no verified time order, repeated day-pairs do not trace identical funds. Counts are graph patterns, not independent events."
+      },
+      "anomalies": {
+        "peers": {
+          "in_counterparties": {
+            "value": 19,
+            "percentile": 1.0,
+            "peer_count": 462,
+            "status": "AVAILABLE",
+            "flag": true
+          },
+          "out_counterparties": {
+            "value": 61,
+            "percentile": 0.9935064935064936,
+            "peer_count": 462,
+            "status": "AVAILABLE",
+            "flag": true
+          },
+          "incoming_volume_kzt": {
+            "value": 1817300.0,
+            "percentile": 0.9891774891774892,
+            "peer_count": 462,
+            "status": "AVAILABLE",
+            "flag": false
+          },
+          "observed_volume_kzt": {
+            "value": 6803456.0,
+            "percentile": 0.9913419913419913,
+            "peer_count": 462,
+            "status": "AVAILABLE",
+            "flag": true
+          },
+          "tx_count": {
+            "value": 119,
+            "percentile": 0.9956709956709957,
+            "peer_count": 462,
+            "status": "AVAILABLE",
+            "flag": true
+          },
+          "max_daily_fan_in": {
+            "value": 4,
+            "percentile": 0.9880952380952381,
+            "peer_count": 462,
+            "status": "AVAILABLE",
+            "flag": false
+          },
+          "max_daily_fan_out": {
+            "value": 7,
+            "percentile": 0.9826839826839827,
+            "peer_count": 462,
+            "status": "AVAILABLE",
+            "flag": false
+          }
+        },
+        "flag_count": 4,
+        "equal_amount_distribution_count": 0,
+        "equal_amount_samples": [],
+        "interpretation": "Depth-peer average-rank percentiles, threshold >=99%, positive values only, cohort >=20. Flags are not probability or guilt. Equal amounts do not prove splitting; sub-5000 transfers are absent."
+      }
+    },
+    "100000003037476100": {
+      "gid": "100000003037476100",
+      "depth": 4,
+      "is_seed": false,
+      "temporal": {
+        "eligible_in_kzt": 465000.0,
+        "compatible_out_kzt": null,
+        "compatibility_fraction": null,
+        "right_censored_in_kzt": 90000.0,
+        "status": "CENSORED",
+        "observed_in_kzt": 555000.0,
+        "same_day_overlap_kzt": null,
+        "same_day_order": "UNKNOWN",
+        "daily": [
+          {
+            "date": "2026-07-25",
+            "in_kzt": 465000.0,
+            "out_kzt": null,
+            "senders": 2,
+            "recipients": null
+          },
+          {
+            "date": "2026-07-30",
+            "in_kzt": 90000.0,
+            "out_kzt": null,
+            "senders": 1,
+            "recipients": null
+          }
+        ],
+        "gather_scatter_count": null,
+        "gather_scatter_samples": [],
+        "activity_burst": {
+          "status": "CENSORED",
+          "flag": null,
+          "peak_date": "2026-07-25",
+          "peak_tx_count": 2,
+          "peak_share": 0.6666666666666666
+        },
+        "limitation": "Maximum compatible amount, not proven pass-through. Incoming buckets require complete +2 day follow-up. Same-day overlap is separate and must not be added. Month/bank/threshold/upstream incomplete."
+      },
+      "routes": {
+        "repeated_chain_count": 0,
+        "repeated_chain_samples": [],
+        "reciprocal_count": 0,
+        "reciprocal_samples": [],
+        "short_cycle_count": 0,
+        "short_cycle_samples": [],
+        "cycles_truncated": false,
+        "interpretation": "Observed relationships; cycles have no verified time order, repeated day-pairs do not trace identical funds. Counts are graph patterns, not independent events."
+      },
+      "anomalies": {
+        "peers": {
+          "in_counterparties": {
+            "value": 3,
+            "percentile": 0.9977477477477478,
+            "peer_count": 444,
+            "status": "AVAILABLE",
+            "flag": true
+          },
+          "out_counterparties": {
+            "value": null,
+            "percentile": null,
+            "peer_count": 444,
+            "status": "CENSORED",
+            "flag": null
+          },
+          "incoming_volume_kzt": {
+            "value": 555000.0,
+            "percentile": 0.9572072072072072,
+            "peer_count": 444,
+            "status": "AVAILABLE",
+            "flag": false
+          },
+          "observed_volume_kzt": {
+            "value": null,
+            "percentile": null,
+            "peer_count": 444,
+            "status": "CENSORED",
+            "flag": null
+          },
+          "tx_count": {
+            "value": null,
+            "percentile": null,
+            "peer_count": 444,
+            "status": "CENSORED",
+            "flag": null
+          },
+          "max_daily_fan_in": {
+            "value": 2,
+            "percentile": 0.9921171171171171,
+            "peer_count": 444,
+            "status": "AVAILABLE",
+            "flag": true
+          },
+          "max_daily_fan_out": {
+            "value": null,
+            "percentile": null,
+            "peer_count": 444,
+            "status": "CENSORED",
+            "flag": null
+          }
+        },
+        "flag_count": 2,
+        "equal_amount_distribution_count": null,
+        "equal_amount_samples": [],
+        "interpretation": "Depth-peer average-rank percentiles, threshold >=99%, positive values only, cohort >=20. Flags are not probability or guilt. Equal amounts do not prove splitting; sub-5000 transfers are absent."
+      }
+    },
+    "100000006866783100": {
+      "gid": "100000006866783100",
+      "depth": 0,
+      "is_seed": true,
+      "temporal": {
+        "eligible_in_kzt": 838812.0,
+        "compatible_out_kzt": 838812.0,
+        "compatibility_fraction": 1.0,
+        "right_censored_in_kzt": 0.0,
+        "status": "PARTIAL",
+        "observed_in_kzt": 838812.0,
+        "same_day_overlap_kzt": 818619.0,
+        "same_day_order": "UNKNOWN",
+        "daily": [
+          {
+            "date": "2026-07-01",
+            "in_kzt": 95500.0,
+            "out_kzt": 226008.0,
+            "senders": 1,
+            "recipients": 4
+          },
+          {
+            "date": "2026-07-02",
+            "in_kzt": 0.0,
+            "out_kzt": 378803.0,
+            "senders": 0,
+            "recipients": 8
+          },
+          {
+            "date": "2026-07-03",
+            "in_kzt": 0.0,
+            "out_kzt": 190957.0,
+            "senders": 0,
+            "recipients": 7
+          },
+          {
+            "date": "2026-07-04",
+            "in_kzt": 81617.0,
+            "out_kzt": 132416.0,
+            "senders": 2,
+            "recipients": 2
+          },
+          {
+            "date": "2026-07-05",
+            "in_kzt": 10000.0,
+            "out_kzt": 387059.0,
+            "senders": 1,
+            "recipients": 10
+          },
+          {
+            "date": "2026-07-06",
+            "in_kzt": 38968.0,
+            "out_kzt": 18775.0,
+            "senders": 1,
+            "recipients": 1
+          },
+          {
+            "date": "2026-07-08",
+            "in_kzt": 56685.0,
+            "out_kzt": 180702.0,
+            "senders": 3,
+            "recipients": 3
+          },
+          {
+            "date": "2026-07-09",
+            "in_kzt": 30000.0,
+            "out_kzt": 651102.0,
+            "senders": 1,
+            "recipients": 13
+          },
+          {
+            "date": "2026-07-11",
+            "in_kzt": 143980.0,
+            "out_kzt": 390148.0,
+            "senders": 4,
+            "recipients": 3
+          },
+          {
+            "date": "2026-07-12",
+            "in_kzt": 102500.0,
+            "out_kzt": 160427.0,
+            "senders": 4,
+            "recipients": 6
+          },
+          {
+            "date": "2026-07-13",
+            "in_kzt": 10000.0,
+            "out_kzt": 196746.0,
+            "senders": 1,
+            "recipients": 2
+          },
+          {
+            "date": "2026-07-14",
+            "in_kzt": 117496.0,
+            "out_kzt": 145439.0,
+            "senders": 5,
+            "recipients": 5
+          },
+          {
+            "date": "2026-07-15",
+            "in_kzt": 92066.0,
+            "out_kzt": 311059.0,
+            "senders": 2,
+            "recipients": 5
+          },
+          {
+            "date": "2026-07-16",
+            "in_kzt": 60000.0,
+            "out_kzt": 250717.0,
+            "senders": 1,
+            "recipients": 6
+          },
+          {
+            "date": "2026-07-17",
+            "in_kzt": 0.0,
+            "out_kzt": 107254.0,
+            "senders": 0,
+            "recipients": 3
+          },
+          {
+            "date": "2026-07-18",
+            "in_kzt": 0.0,
+            "out_kzt": 220425.0,
+            "senders": 0,
+            "recipients": 3
+          }
+        ],
+        "gather_scatter_count": 4,
+        "gather_scatter_samples": [
+          {
+            "date": "2026-07-08",
+            "senders": 3,
+            "following_1_2_day_recipients": 13,
+            "in_kzt": 56685.0,
+            "following_out_kzt": 651102.0
+          },
+          {
+            "date": "2026-07-11",
+            "senders": 4,
+            "following_1_2_day_recipients": 8,
+            "in_kzt": 143980.0,
+            "following_out_kzt": 357173.0
+          },
+          {
+            "date": "2026-07-12",
+            "senders": 4,
+            "following_1_2_day_recipients": 7,
+            "in_kzt": 102500.0,
+            "following_out_kzt": 342185.0
+          },
+          {
+            "date": "2026-07-14",
+            "senders": 5,
+            "following_1_2_day_recipients": 11,
+            "in_kzt": 117496.0,
+            "following_out_kzt": 561776.0
+          }
+        ],
+        "activity_burst": {
+          "status": "AVAILABLE",
+          "flag": false,
+          "peak_date": "2026-07-09",
+          "peak_tx_count": 19,
+          "peak_share": 0.15702479338842976
+        },
+        "limitation": "Maximum compatible amount, not proven pass-through. Incoming buckets require complete +2 day follow-up. Same-day overlap is separate and must not be added. Month/bank/threshold/upstream incomplete."
+      },
+      "routes": {
+        "repeated_chain_count": 20,
+        "repeated_chain_samples": [
+          {
+            "gids": [
+              "100000006866783100",
+              "100000004299488100",
+              "100000007055802100"
+            ],
+            "support_episodes": 3,
+            "episodes": [
+              {
+                "in_date": "2026-07-09",
+                "out_date": "2026-07-11"
+              },
+              {
+                "in_date": "2026-07-11",
+                "out_date": "2026-07-12"
+              },
+              {
+                "in_date": "2026-07-12",
+                "out_date": "2026-07-13"
+              }
+            ]
+          },
+          {
+            "gids": [
+              "100000001660397100",
+              "100000006866783100",
+              "100000000961900100"
+            ],
+            "support_episodes": 2,
+            "episodes": [
+              {
+                "in_date": "2026-07-08",
+                "out_date": "2026-07-09"
+              },
+              {
+                "in_date": "2026-07-12",
+                "out_date": "2026-07-14"
+              }
+            ]
+          },
+          {
+            "gids": [
+              "100000003796063100",
+              "100000006866783100",
+              "100000007055802100"
+            ],
+            "support_episodes": 2,
+            "episodes": [
+              {
+                "in_date": "2026-07-12",
+                "out_date": "2026-07-13"
+              },
+              {
+                "in_date": "2026-07-14",
+                "out_date": "2026-07-16"
+              }
+            ]
+          },
+          {
+            "gids": [
+              "100000004070318100",
+              "100000006866783100",
+              "100000004299488100"
+            ],
+            "support_episodes": 2,
+            "episodes": [
+              {
+                "in_date": "2026-07-09",
+                "out_date": "2026-07-11"
+              },
+              {
+                "in_date": "2026-07-11",
+                "out_date": "2026-07-12"
+              }
+            ]
+          },
+          {
+            "gids": [
+              "100000004070318100",
+              "100000006866783100",
+              "100000008686313100"
+            ],
+            "support_episodes": 2,
+            "episodes": [
+              {
+                "in_date": "2026-07-09",
+                "out_date": "2026-07-11"
+              },
+              {
+                "in_date": "2026-07-11",
+                "out_date": "2026-07-12"
+              }
+            ]
+          },
+          {
+            "gids": [
+              "100000005910114100",
+              "100000006866783100",
+              "100000000011452100"
+            ],
+            "support_episodes": 2,
+            "episodes": [
+              {
+                "in_date": "2026-07-04",
+                "out_date": "2026-07-05"
+              },
+              {
+                "in_date": "2026-07-08",
+                "out_date": "2026-07-09"
+              }
+            ]
+          },
+          {
+            "gids": [
+              "100000005910114100",
+              "100000006866783100",
+              "100000004071080100"
+            ],
+            "support_episodes": 2,
+            "episodes": [
+              {
+                "in_date": "2026-07-04",
+                "out_date": "2026-07-05"
+              },
+              {
+                "in_date": "2026-07-08",
+                "out_date": "2026-07-09"
+              }
+            ]
+          },
+          {
+            "gids": [
+              "100000005910114100",
+              "100000006866783100",
+              "100000004299488100"
+            ],
+            "support_episodes": 2,
+            "episodes": [
+              {
+                "in_date": "2026-07-08",
+                "out_date": "2026-07-09"
+              },
+              {
+                "in_date": "2026-07-11",
+                "out_date": "2026-07-12"
+              }
+            ]
+          },
+          {
+            "gids": [
+              "100000005910114100",
+              "100000006866783100",
+              "100000007055802100"
+            ],
+            "support_episodes": 2,
+            "episodes": [
+              {
+                "in_date": "2026-07-11",
+                "out_date": "2026-07-13"
+              },
+              {
+                "in_date": "2026-07-14",
+                "out_date": "2026-07-16"
+              }
+            ]
+          },
+          {
+            "gids": [
+              "100000005910114100",
+              "100000006866783100",
+              "100000008560717100"
+            ],
+            "support_episodes": 2,
+            "episodes": [
+              {
+                "in_date": "2026-07-04",
+                "out_date": "2026-07-05"
+              },
+              {
+                "in_date": "2026-07-14",
+                "out_date": "2026-07-16"
+              }
+            ]
+          }
+        ],
+        "reciprocal_count": 8,
+        "reciprocal_samples": [
+          {
+            "gids": [
+              "100000000089154100",
+              "100000006866783100",
+              "100000000089154100"
+            ],
+            "forward_kzt": 22000.0,
+            "reverse_kzt": 10000.0
+          },
+          {
+            "gids": [
+              "100000001609499100",
+              "100000006866783100",
+              "100000001609499100"
+            ],
+            "forward_kzt": 11000.0,
+            "reverse_kzt": 93937.0
+          },
+          {
+            "gids": [
+              "100000001660397100",
+              "100000006866783100",
+              "100000001660397100"
+            ],
+            "forward_kzt": 24000.0,
+            "reverse_kzt": 19300.0
+          },
+          {
+            "gids": [
+              "100000004070318100",
+              "100000006866783100",
+              "100000004070318100"
+            ],
+            "forward_kzt": 85000.0,
+            "reverse_kzt": 64725.0
+          },
+          {
+            "gids": [
+              "100000004390333100",
+              "100000006866783100",
+              "100000004390333100"
+            ],
+            "forward_kzt": 60000.0,
+            "reverse_kzt": 45751.0
+          },
+          {
+            "gids": [
+              "100000006866783100",
+              "100000007639767100",
+              "100000006866783100"
+            ],
+            "forward_kzt": 23018.0,
+            "reverse_kzt": 10000.0
+          },
+          {
+            "gids": [
+              "100000006866783100",
+              "100000008304139100",
+              "100000006866783100"
+            ],
+            "forward_kzt": 23567.0,
+            "reverse_kzt": 144000.0
+          },
+          {
+            "gids": [
+              "100000006866783100",
+              "100000008686313100",
+              "100000006866783100"
+            ],
+            "forward_kzt": 225181.0,
+            "reverse_kzt": 48100.0
+          }
+        ],
+        "short_cycle_count": 85,
+        "short_cycle_samples": [
+          {
+            "gids": [
+              "100000000089154100",
+              "100000000437046100",
+              "100000004070318100",
+              "100000006866783100",
+              "100000000089154100"
+            ],
+            "length": 4
+          },
+          {
+            "gids": [
+              "100000000089154100",
+              "100000000437046100",
+              "100000007639767100",
+              "100000006866783100",
+              "100000000089154100"
+            ],
+            "length": 4
+          },
+          {
+            "gids": [
+              "100000000089154100",
+              "100000000437046100",
+              "100000008686313100",
+              "100000006866783100",
+              "100000000089154100"
+            ],
+            "length": 4
+          },
+          {
+            "gids": [
+              "100000000089154100",
+              "100000008111003100",
+              "100000003796063100",
+              "100000006866783100",
+              "100000000089154100"
+            ],
+            "length": 4
+          },
+          {
+            "gids": [
+              "100000000331309100",
+              "100000008686313100",
+              "100000006866783100",
+              "100000004403675100",
+              "100000000331309100"
+            ],
+            "length": 4
+          },
+          {
+            "gids": [
+              "100000000437046100",
+              "100000004070318100",
+              "100000006866783100",
+              "100000004351795100",
+              "100000000437046100"
+            ],
+            "length": 4
+          },
+          {
+            "gids": [
+              "100000000437046100",
+              "100000004070318100",
+              "100000006866783100",
+              "100000004390333100",
+              "100000000437046100"
+            ],
+            "length": 4
+          },
+          {
+            "gids": [
+              "100000000437046100",
+              "100000004070318100",
+              "100000006866783100",
+              "100000007639767100",
+              "100000000437046100"
+            ],
+            "length": 4
+          },
+          {
+            "gids": [
+              "100000000437046100",
+              "100000004070318100",
+              "100000006866783100",
+              "100000008304139100",
+              "100000000437046100"
+            ],
+            "length": 4
+          },
+          {
+            "gids": [
+              "100000000437046100",
+              "100000004070318100",
+              "100000006866783100",
+              "100000008686313100",
+              "100000000437046100"
+            ],
+            "length": 4
+          }
+        ],
+        "cycles_truncated": false,
+        "interpretation": "Observed relationships; cycles have no verified time order, repeated day-pairs do not trace identical funds. Counts are graph patterns, not independent events."
+      },
+      "anomalies": {
+        "peers": {
+          "in_counterparties": {
+            "value": 13,
+            "percentile": 0.9876543209876543,
+            "peer_count": 81,
+            "status": "AVAILABLE",
+            "flag": false
+          },
+          "out_counterparties": {
+            "value": 67,
+            "percentile": 0.9753086419753086,
+            "peer_count": 81,
+            "status": "AVAILABLE",
+            "flag": false
+          },
+          "incoming_volume_kzt": {
+            "value": 838812.0,
+            "percentile": 0.9629629629629629,
+            "peer_count": 81,
+            "status": "AVAILABLE",
+            "flag": false
+          },
+          "observed_volume_kzt": {
+            "value": 4786849.0,
+            "percentile": 0.9753086419753086,
+            "peer_count": 81,
+            "status": "AVAILABLE",
+            "flag": false
+          },
+          "tx_count": {
+            "value": 121,
+            "percentile": 0.9753086419753086,
+            "peer_count": 81,
+            "status": "AVAILABLE",
+            "flag": false
+          },
+          "max_daily_fan_in": {
+            "value": 5,
+            "percentile": 0.9876543209876543,
+            "peer_count": 81,
+            "status": "AVAILABLE",
+            "flag": false
+          },
+          "max_daily_fan_out": {
+            "value": 13,
+            "percentile": 1.0,
+            "peer_count": 81,
+            "status": "AVAILABLE",
+            "flag": true
+          }
+        },
+        "flag_count": 1,
+        "equal_amount_distribution_count": 2,
+        "equal_amount_samples": [
+          {
+            "date": "2026-07-09",
+            "amount_kzt": 10000.0,
+            "recipient_count": 3,
+            "recipient_gids": [
+              "100000001126374100",
+              "100000003066385100",
+              "100000008665380100"
+            ]
+          },
+          {
+            "date": "2026-07-16",
+            "amount_kzt": 10000.0,
+            "recipient_count": 3,
+            "recipient_gids": [
+              "100000000089154100",
+              "100000000555721100",
+              "100000008560717100"
+            ]
+          }
+        ],
+        "interpretation": "Depth-peer average-rank percentiles, threshold >=99%, positive values only, cohort >=20. Flags are not probability or guilt. Equal amounts do not prove splitting; sub-5000 transfers are absent."
+      }
+    }
+  },
+  "python_tests": 92,
+  "js_renderer_checks": 7,
+  "browser_checks": [
+    "temporal display",
+    "repeated-chain edge highlight 2/2",
+    "exact GID navigation",
+    "depth=4 N/A and CENSORED"
+  ],
+  "live_ai_calls": 0
+}
