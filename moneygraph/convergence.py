@@ -34,7 +34,7 @@ def calculate(graph, seeds):
         result[str(target)] = {
             'external_seed_count': len(multiplicity),
             'self_seed_excluded': target in seeds,
-            'last_hop_effective_branches': effective,
+            'effective_last_hop_branches': effective,
             'supported_predecessor_count': len(branches),
             'branches': [{'predecessor_gid': str(p), 'seed_count': len(branches[p]),
                           'seed_credit_mass': masses[p], 'share': shares[p]} for p in branches],

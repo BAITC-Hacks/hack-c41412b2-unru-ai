@@ -6,13 +6,22 @@ import json
 import time
 from pathlib import Path
 import pandas as pd
-from fastapi import FastAPI, HTTPException, Query
-from fastapi.responses import FileResponse
+from fastapi import FastAPI, HTTPException, Query, Request
+from pydantic import BaseModel, Field, ConfigDict
+from .analyst import Analyst
+from fastapi.responses import FileResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 from .pipeline import ROOT, DEFAULT_DATA, run
 from .observability import QUEUES
 
 DOWNLOADS = {'nodes_roles.csv', 'clusters.csv', 'top_nodes.csv'}
+
+
+class AnalystQuestion(BaseModel):
+    model_config = ConfigDict(extra='forbid', strict=True)
+    gid: str = Field(pattern=r'^[0-9]{1,20}$')
+    question: str = Field(min_length=1, max_length=1500)
+    compare_gid: str | None = Field(default=None, pattern=r'^[0-9]{1,20}$')
 
 
 class Store:
@@ -75,6 +84,24 @@ def create_app(data=DEFAULT_DATA, out=ROOT / 'outputs'):
     store = Store(data, out)
     app = FastAPI(title='MoneyGraph Investigator', version='0.3.0')
     app.state.store = store
+    app.state.analyst = Analyst(store)
+
+    @app.get('/api/analyst/status')
+    def analyst_status():
+        return app.state.analyst.status()
+
+    @app.post('/api/analyst/ask')
+    def analyst_ask(body: AnalystQuestion, request: Request):
+        origin = request.headers.get('origin')
+        if origin and origin != str(request.base_url).rstrip('/'):
+            raise HTTPException(403, 'Cross-origin AI requests are not allowed')
+        store.node(body.gid)
+        if body.compare_gid: store.node(body.compare_gid)
+        def stream():
+            for event in app.state.analyst.events(body.gid, body.question, body.compare_gid):
+                yield json.dumps(event, ensure_ascii=False, allow_nan=False) + '\n'
+        return StreamingResponse(stream(), media_type='application/x-ndjson', headers={'Cache-Control':'no-store'})
+
 
     @app.get('/api/summary')
     def summary():

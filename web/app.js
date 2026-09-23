@@ -49,6 +49,7 @@ async function selectNode(gid) {
     if (request !== state.nodeSeq) return;
     if (node.gid !== gid || ego.center_gid !== gid) throw new Error('Несовпадение идентификатора ответа');
     renderCard(node); renderGraph(ego); renderCluster(node.cluster);
+    resetAnalystNode(gid);
     history.replaceState(null,'',`?gid=${encodeURIComponent(gid)}`);
   } catch(error) {
     if(request!==state.nodeSeq) return;
@@ -65,7 +66,7 @@ function renderCard(n) {
   <div class="card-section scores"><div><p class="label">Приоритет проверки</p><strong>${fixed(n.priority_score)}</strong></div><div><p class="label">Пригодность наблюдений</p><strong>${n.observability_score.toFixed(2)}</strong>${badge(n.observability_level)}</div></div>
   <div class="card-section"><p class="label">Почему этот узел</p><p class="body">${esc(n.evidence)}</p><p class="explanation">${esc(n.queue_reason)}</p></div>
   <div class="card-section"><p class="label">Факты наблюдаемого графа</p><div class="facts">${facts.map(([k,v])=>`<div class="fact"><span>${esc(k)}</span><b>${esc(v)}</b></div>`).join('')}</div></div>
-  <div class="card-section convergence"><p class="label">Схождение seed · входящие ветви</p><div class="facts"><div class="fact"><span>Достижим от seed</span><b>${n.seed_convergence.reachable_seed_count}</b></div><div class="fact"><span>Эффективных наблюдаемых ветвей</span><b>${n.seed_convergence.last_hop_effective_branches.toFixed(2)}</b></div><div class="fact"><span>Внешних seed в расчёте</span><b>${n.seed_convergence.external_seed_count}</b></div></div><p class="explanation">Достижимость от seed не означает независимые пути. Эффективные ветви показывают разнообразие последних наблюдаемых входов, а не объём денег. Ветви могут пересекаться выше по графу; их число может быть больше числа seed.</p><p class="explanation">Возврат через сам узел исключён. ${n.seed_convergence.self_seed_excluded?'Сам seed не считается внешним источником. ':''}Ноль — нет входящей ветви от внешнего seed в выгрузке; это не доказательство отсутствия внешних связей.</p></div>
+  <div class="card-section convergence"><p class="label">Схождение seed · входящие ветви</p><div class="facts"><div class="fact"><span>Достижим от seed</span><b>${n.seed_convergence.reachable_seed_count}</b></div><div class="fact"><span>Эффективное разнообразие последних входящих ветвей</span><b>${n.seed_convergence.effective_last_hop_branches.toFixed(2)}</b></div><div class="fact"><span>Прямых входящих ветвей</span><b>${n.in_degree}</b></div><div class="fact"><span>Ветвей от внешних seed</span><b>${n.seed_convergence.supported_predecessor_count}</b></div><div class="fact"><span>Внешних seed в расчёте</span><b>${n.seed_convergence.external_seed_count}</b></div></div><p class="explanation">Это разнообразие наблюдаемых последних входящих ветвей, а не число независимых маршрутов. Один seed может достигать нескольких ветвей. Ветви могут пересекаться upstream; показатель может быть больше числа seed.</p><p class="explanation">Возврат через сам узел исключён. ${n.seed_convergence.self_seed_excluded?'Сам seed не считается внешним источником. ':''}Ноль — нет входящей ветви от внешнего seed в выгрузке; это не доказательство отсутствия внешних связей.</p></div>
   <div class="card-section dependency"><p class="label">Зависимость наблюдаемых путей</p><div class="facts"><div class="fact"><span>Других узлов зависят</span><b>${n.structural_dependency.dominated_nodes ?? 'N/A'}</b></div><div class="fact"><span>Кластеров среди них</span><b>${n.structural_dependency.dominated_clusters ?? 'N/A'}</b></div></div><p class="explanation">${esc(n.structural_dependency.explanation)}</p><p class="explanation">${esc(n.structural_dependency.limitation || '')}</p></div>
   <div class="card-section"><p class="label">Какие признаки можно интерпретировать</p>${Object.entries(n.evidence_details).map(([key,item])=>`<div class="availability-row" title="${esc(item.reason)}"><span>${({fan_in:'Входящие связи',fan_out:'Исходящее поведение',transit:'Transit evidence',terminal:'Terminal evidence',seed_reach:'Достижимость от seed',community:'Структурный кластер',dominator:'Зависимость путей'})[key]}</span><b class="${item.status}">${item.value===null?'N/A':(typeof item.value==='number'&&!Number.isInteger(item.value)?item.value.toFixed(3):esc(item.value))} <small>${esc(item.status)}</small></b></div>`).join('')}<p class="explanation">AVAILABLE — измеримо только в наблюдаемом графе. PARTIAL — ограниченная интерпретация. CENSORED — обрезано обходом. N/A — нельзя оценить; это не ноль.</p></div>
   <div class="card-section limitations"><p class="label">${n.investigation_queue==='REQUEST_MORE_DATA'?'Почему нужны дополнительные данные':'Ограничения интерпретации'}</p><ul>${n.observability_reasons.map(r=>`<li>${esc(r)}</li>`).join('')}</ul><p class="explanation">${esc(n.data_gaps.find(g=>g.code==='GLOBAL_SAMPLING').description)}</p></div>
@@ -130,3 +131,62 @@ $('zoom-out').addEventListener('click',()=>{state.zoom=Math.max(.5,state.zoom-.2
 $('zoom-fit').addEventListener('click',()=>{state.zoom=1;applyZoom();$('graph-viewport').scrollTo(0,0);});
 async function boot(){try{const s=await api('/api/summary');const cards=[['Узлы',s.total_nodes,`${s.total_transactions} транзакций`,''],['Направленные связи',s.total_edges,`${fmt(s.total_observed_turnover)} KZT`,''],['Кластеры',s.n_clusters,'Все узлы, включая изоляты',''],['Проверить сейчас',s.queue_counts.INVESTIGATE_NOW,'INVESTIGATE NOW','teal'],['Запросить данные',s.queue_counts.REQUEST_MORE_DATA,'REQUEST MORE DATA','amber']];$('kpis').innerHTML=cards.map(([title,value,sub,color])=>`<div class="kpi ${color}"><label>${title}</label><strong>${fmt(value)}</strong><small>${esc(sub)}</small></div>`).join('');$('count-now').textContent=s.queue_counts.INVESTIGATE_NOW;$('count-data').textContent=s.queue_counts.REQUEST_MORE_DATA;$('count-monitor').textContent=s.queue_counts.MONITOR;const linked=new URLSearchParams(location.search).get('gid');if(linked){state.gid=linked;await selectNode(linked);}await loadQueue();}catch(error){showError(error);$('kpis').innerHTML='<p>Не удалось загрузить данные. Проверьте локальный сервер и обновите страницу.</p>';}}
 boot();
+
+
+let aiSequence=0, aiController=null, aiAvailable=false;
+function resetAnalystNode(gid) {
+  aiSequence++; if(aiController) aiController.abort(); aiController=null;
+  $('ai-gid').textContent=gid; $('ai-answer').replaceChildren(); $('ai-activity').textContent='';
+  $('ai-submit').disabled=!aiAvailable;
+}
+function renderAnalystEvent(event) {
+  if(event.type==='activity') {
+    const line=document.createElement('p'); line.textContent=(event.source?'✓ ':'… ')+String(event.message||'');
+    $('ai-activity').append(line); return;
+  }
+  if(event.type==='error') throw new Error(String(event.message||'AI недоступен'));
+  if(event.type!=='result') throw new Error('Неизвестный формат AI');
+  const a=event.answer;
+  if(!a || !Array.isArray(a.why) || !a.why.every(x=>typeof x==='string') ||
+      !['conclusion','alternative','evidence_against','limitation','next_step'].every(k=>typeof a[k]==='string') || !Array.isArray(event.trace)) throw new Error('Некорректный ответ AI');
+  const labels={conclusion:'Вывод',why:'Наблюдаемые основания',alternative:'Альтернатива',evidence_against:'Что ослабляет гипотезу',limitation:'Ограничение',next_step:'Следующий шаг'};
+  $('ai-answer').replaceChildren();
+  for(const [key,label] of Object.entries(labels)) {
+    const block=document.createElement('section'), heading=document.createElement('h4'), text=document.createElement('p');
+    heading.textContent=label; text.textContent=key==='why'?a.why.join('\n'):a[key]; block.append(heading,text); $('ai-answer').append(block);
+  }
+  const meta=document.createElement('p'); meta.className='explanation';
+  meta.textContent=`${event.model} · ${event.latency_seconds} с · ${event.notice}`; $('ai-answer').append(meta);
+  const sources=document.createElement('details'), title=document.createElement('summary'), list=document.createElement('p');title.textContent='Проверенные источники: инструменты';
+  list.textContent=event.trace.map(t=>`${t.source_id}: ${t.tool} (${Object.values(t.arguments).join(', ')})`).join('\n');sources.append(title,list);$('ai-answer').append(sources);
+}
+async function askAnalyst(question) {
+  if(!state.gid || !aiAvailable) return;
+  if(aiController) aiController.abort(); aiController=new AbortController();
+  const seq=++aiSequence, gid=state.gid, controller=aiController;
+  $('ai-answer').replaceChildren();$('ai-activity').textContent='';$('ai-submit').disabled=true;
+  const timer=setTimeout(()=>controller.abort(),150000);
+  try {
+    const response=await fetch('/api/analyst/ask',{method:'POST',headers:{'Content-Type':'application/json'},signal:controller.signal,
+      body:JSON.stringify({gid,question,compare_gid:$('ai-other').value.trim()||null})});
+    if(!response.ok) throw new Error(`Запрос отклонён (${response.status}). Проверьте GID.`);
+    const reader=response.body.getReader(), decoder=new TextDecoder(); let buffer='',completed=false;
+    while(true) {
+      const {done,value}=await reader.read(); if(seq!==aiSequence) {await reader.cancel();return;}
+      buffer+=decoder.decode(value||new Uint8Array(),{stream:!done});
+      let boundary;
+      while((boundary=buffer.indexOf('\n'))>=0) {
+        const line=buffer.slice(0,boundary);buffer=buffer.slice(boundary+1);if(!line.trim())continue;
+        const event=JSON.parse(line);renderAnalystEvent(event); if(event.type==='result')completed=true;
+      }
+      if(done)break;
+    }
+    if(!completed)throw new Error('AI не завершил ответ. Повторите запрос.');
+  } catch(error) {
+    if(seq===aiSequence) { $('ai-answer').textContent=error.name==='AbortError'?'Запрос остановлен или истекло время ожидания.':(error.message||'AI недоступен'); }
+  } finally { clearTimeout(timer);if(seq===aiSequence){$('ai-submit').disabled=!aiAvailable;aiController=null;} }
+}
+$('ai-form').addEventListener('submit',e=>{e.preventDefault();askAnalyst($('ai-question').value.trim());});
+document.querySelectorAll('[data-ai-prompt]').forEach(b=>b.addEventListener('click',()=>{$('ai-question').value=b.dataset.aiPrompt;askAnalyst(b.dataset.aiPrompt);}));
+$('ai-compare').addEventListener('click',()=>{$('ai-question').value='Почему выбранный узел выше или ниже другого? Назови также преимущество второго узла, если оно есть.';$('ai-other').focus();});
+api('/api/analyst/status').then(s=>{aiAvailable=s.available;$('ai-status').textContent=s.message;$('ai-submit').disabled=!aiAvailable;document.querySelectorAll('[data-ai-prompt]').forEach(b=>b.disabled=!aiAvailable);}).catch(()=>{$('ai-status').textContent='AI analyst unavailable';$('ai-submit').disabled=true;});

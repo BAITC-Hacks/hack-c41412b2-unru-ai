@@ -120,4 +120,4 @@ def test_seed_convergence_api_exact_ids_and_unmodified_reach(client, app):
         assert c['reachable_seed_count'] == node['reachable_seed_count']
         assert c['external_seed_count'] == c['reachable_seed_count'] - int(node['is_seed'])
         assert all(isinstance(b['predecessor_gid'],str) for b in c['branches'])
-        assert c['last_hop_effective_branches'] >= 0
+        assert c['effective_last_hop_branches'] >= 0
