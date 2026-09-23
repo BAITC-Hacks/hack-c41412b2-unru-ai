@@ -1,0 +1,42 @@
+[
+  {
+    "height": 900,
+    "pageWidth": 1440,
+    "sectionGap": 18,
+    "smallText": [],
+    "width": 1440,
+    "workspaceHeight": 720
+  },
+  {
+    "height": 960,
+    "pageWidth": 1536,
+    "sectionGap": 18,
+    "smallText": [],
+    "width": 1536,
+    "workspaceHeight": 720
+  },
+  {
+    "height": 1117,
+    "pageWidth": 1728,
+    "sectionGap": 18,
+    "smallText": [],
+    "width": 1728,
+    "workspaceHeight": 750
+  },
+  {
+    "height": 768,
+    "pageWidth": 1024,
+    "sectionGap": 18,
+    "smallText": [],
+    "width": 1024,
+    "workspaceHeight": 1296
+  },
+  {
+    "height": 844,
+    "pageWidth": 390,
+    "sectionGap": 18,
+    "smallText": [],
+    "width": 390,
+    "workspaceHeight": 1792
+  }
+]

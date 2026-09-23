@@ -1,0 +1,42 @@
+/* Graph workspace only. Methodology and archive keep their existing typography. */
+body.graph-page{--text:15px;--secondary:13px;--micro:12px;font-size:var(--text);line-height:1.45}
+.graph-page .method-nav{padding:10px 24px}
+.graph-page .topbar{min-height:70px;padding:12px 24px;gap:20px}
+.graph-page main{padding:16px 24px;max-width:2000px}
+.graph-page .heading{margin-bottom:14px}.graph-page .heading h2{font-size:21px}
+.graph-page .heading .eyebrow{display:none}
+.graph-page .brand p,.graph-page .local,.graph-page .local span,.graph-page .period,.graph-page .eyebrow,.graph-page .small,.graph-page .queue-panel .panel-head .small,.graph-page .chip,.graph-page .label,.graph-page .scores .label,.graph-page .badge,.graph-page .availability-row small,.graph-page footer{font-size:var(--micro);letter-spacing:.2px}
+.graph-page .search input{font-size:15px}.graph-page .search{max-width:460px}
+.graph-page h3{font-size:18px}.graph-page .panel-head{padding:12px 14px}
+.graph-page .kpis{gap:12px;margin-bottom:16px}.graph-page .kpi{padding:10px 16px}.graph-page .kpi label{font-size:13px}.graph-page .kpi strong{font-size:32px;line-height:1.1;margin-top:3px}.graph-page .kpi small{font-size:12px;margin-top:4px}
+.graph-page .workspace{grid-template-columns:280px minmax(0,1fr) 380px;gap:16px;height:720px;align-items:stretch}
+.graph-page .workspace>.panel{min-height:0;min-width:0;height:100%}
+.graph-page .queue-panel{display:flex;flex-direction:column}
+.graph-page .queue-panel .panel-head .small{display:none}
+.graph-page .queue-tabs{flex-shrink:0;padding:10px 8px 0}.graph-page .queue-tabs button{font-size:12px;padding:7px 4px}.graph-page .queue-tabs span{font-size:12px}
+.graph-page .queue-description{font-size:13px;margin:10px 14px;min-height:0}
+.graph-page .queue-list{flex:1;min-height:0;max-height:none;overscroll-behavior:contain}
+.graph-page .queue-item{padding:12px}.graph-page .queue-item .id{font-size:15px}.graph-page .queue-item .row{font-size:14px;gap:8px;align-items:start;margin-top:6px}.graph-page .queue-item .score{font-size:15px;flex-shrink:0}.graph-page .queue-item .obs{font-size:12px;letter-spacing:0}
+.graph-page .pagination{padding:8px 12px;flex-shrink:0}.graph-page .pagination span{font-size:13px}
+.graph-page .graph-panel{display:flex;flex-direction:column;overflow-y:auto;overscroll-behavior:contain}
+.graph-page .graph-panel>.panel-head{flex-shrink:0}.graph-page .graph-subtitle{overflow-wrap:anywhere}
+.graph-page .graph-toolbar{padding:8px 12px;font-size:12px;flex-shrink:0}.graph-page .graph-toolbar>span{display:none}.graph-page .graph-toolbar>div{width:100%;gap:6px}.graph-page .graph-toolbar button{font-size:13px;padding:5px 8px}
+.graph-page .graph-viewport{height:auto;min-height:340px;flex:1 0 340px;overflow:hidden}
+.graph-page .legend{font-size:12px;gap:6px 10px;padding:10px 12px;flex-shrink:0}.graph-page .graph-help{font-size:13px;padding:0 12px 10px;line-height:1.45}
+.graph-page .edge-details{font-size:13px;flex-shrink:0}.graph-page .edge-details summary{padding:9px 12px}.graph-page .cluster-panel{padding:10px 12px;flex-shrink:0}.graph-page .cluster-panel:empty{display:none}.graph-page .cluster-panel p{font-size:13px}.graph-page .cluster-panel button{font-size:12px}
+.graph-page .node-card{display:flex;flex-direction:column;overflow:hidden}.graph-page .card-header{flex-shrink:0;padding:12px 16px}.graph-page .full-gid{font-size:16px;margin-bottom:8px;letter-spacing:0}.graph-page .card-header .eyebrow{margin-bottom:5px}
+.graph-page .inspector-tabs{display:flex;flex-wrap:wrap;gap:4px;padding:8px 10px;border-bottom:1px solid var(--line);flex-shrink:0;background:#f7f9fb}.graph-page .inspector-tabs button{font-size:12px;padding:6px 7px;border-color:transparent}.graph-page .inspector-tabs [aria-selected=true]{color:#076c65;background:#e5f2ef;border-color:#bedbd5;font-weight:650}
+.graph-page .inspector-content{overflow-y:auto;overflow-x:hidden;min-height:0;flex:1;overscroll-behavior:contain}.graph-page .card-section{padding:13px 16px}.graph-page .hypothesis strong{font-size:19px}.graph-page .hypothesis .value{font-size:20px;flex-shrink:0}.graph-page .alternative .hypothesis strong{font-size:15px}.graph-page .alternative .value{font-size:16px}
+.graph-page .label{margin-bottom:6px}.graph-page .explanation{font-size:13px;line-height:1.5}.graph-page .card-section p.body,.graph-page .request p{font-size:15px;line-height:1.5}.graph-page .request .explanation{font-size:13px}.graph-page .scores strong{font-size:25px}.graph-page .scores .method-link{font-size:12px;margin:2px 0}.graph-page .fact span{font-size:13px}.graph-page .fact b{font-size:15px;overflow-wrap:anywhere}.graph-page .facts{gap:14px 12px}
+.graph-page .limitations li,.graph-page .availability-row{font-size:13px}.graph-page .availability-row b{font-size:13px}.graph-page .notice{font-size:13px}.graph-page table,.graph-page th,.graph-page td button,.graph-page .patterns table,.graph-page .patterns button{font-size:12px}.graph-page .patterns td,.graph-page .patterns th{white-space:normal;overflow-wrap:anywhere}.graph-page .patterns p{font-size:13px}.graph-page .patterns summary{font-size:14px}.graph-page .patterns ul{padding-left:16px}.graph-page .patterns button{max-width:100%}
+.graph-page .ai-panel{margin-top:18px;padding:18px}.graph-page .ai-panel .panel-head{padding:0 0 12px}.graph-page .resilience-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:12px 0}.graph-page .resilience-kpis>div{background:#f4f7f9;border:1px solid var(--line);border-radius:8px;padding:12px}.graph-page .resilience-kpis span{display:block;font-size:13px;color:var(--muted)}.graph-page .resilience-kpis strong{font-size:22px;display:block;margin-top:5px}.graph-page .resilience-details summary{cursor:pointer;font-size:14px;color:var(--teal)}
+@media(min-width:1600px){.graph-page .workspace{grid-template-columns:300px minmax(0,1fr) 400px;height:750px}}
+@media(min-width:1280px) and (max-width:1399px){.graph-page .workspace{grid-template-columns:260px minmax(0,1fr) 360px;gap:12px}.graph-page main{padding-left:16px;padding-right:16px}}
+@media(max-width:1279px){.graph-page .workspace{grid-template-columns:280px minmax(0,1fr);height:auto}.graph-page .queue-panel,.graph-page .graph-panel{height:680px!important}.graph-page .node-card{grid-column:1/-1;height:600px!important;display:flex}.graph-page .local{display:none}.graph-page .search{width:50%}.graph-page .inspector-tabs{flex-wrap:nowrap}}
+@media(max-width:740px){.graph-page main{padding:12px}.graph-page .topbar{padding:12px;flex-wrap:wrap}.graph-page .brand p{font-size:12px}.graph-page .search{width:100%;max-width:none}.graph-page .workspace{display:flex;flex-direction:column}.graph-page .queue-panel{height:420px!important}.graph-page .graph-panel{height:700px!important}.graph-page .node-card{height:640px!important}.graph-page .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.graph-page .kpi strong{font-size:30px}.graph-page .resilience-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.graph-page .resilience-kpis strong{font-size:18px}.graph-page .inspector-tabs{flex-wrap:wrap}.graph-page .ai-form-row input{min-width:0;max-width:100%}.graph-page .method-nav{gap:14px;padding:10px 12px}}
+.graph-page .stability-headline{font-size:16px;font-weight:650;color:var(--teal);line-height:1.4}
+.graph-page .inspector-content p,.graph-page .inspector-content li{overflow-wrap:anywhere}
+.graph-page .inspector-tabs{gap:2px}.graph-page .inspector-tabs button{padding:6px 4px}
+.graph-page .cluster-details{flex-shrink:0;border-top:1px solid var(--line);font-size:13px}.graph-page .cluster-details>summary{cursor:pointer;padding:10px 12px}.graph-page .cluster-details .cluster-panel{border-top:0}
+/* Preserve existing zoom/pan behavior inside the graph, never on the page. */
+.graph-page .graph-viewport{overflow:auto}
