@@ -6,6 +6,8 @@
 
 [Сценарий защиты на 5 минут](docs/DEMO_5_MIN.md) · [Подготовка сдачи](docs/SUBMISSION.md).
 
+**PHASE 8 проверен в чистой копии `6e5da22`:** 92 Python tests + 7 JS checks; core 0.497 с, patterns 0.252 с. [Новая проверка](audit/phase8_clean_check.json). Зависимости прежние.
+
 **Предыдущая чистая проверка `336b6e3` (до PHASE 8):** 85 Python-тестов + 3 JS renderer checks; три CSV совпадают по SHA-256. Первый расчёт после установки — 5.10 с, повторный — 0.47 с. UI, три случайных GID и offline-архив проверены без ключа. [Отчёт](audit/final_reproduction.json), [установленные версии](audit/final_environment.txt).
 
 ## Установка и одна команда запуска
@@ -609,3 +611,5 @@ Branch diversity не включена в новые процентили: её 
 6 узлов с распределением равных сумм. Время нового расчёта ~0.26 с до записи JSON.
 92 Python tests + 3 AI renderer checks + 4 pattern renderer checks.
 Дополнительная JS-проверка: `node tests/test_patterns_frontend.cjs`.
+
+Базовый structural evidence сохранён: сила transit по-прежнему рассчитана без temporal. При наличии Pattern Analysis UI уточняет это в подсказке, не изменяя исторические JSON или AI-архив.

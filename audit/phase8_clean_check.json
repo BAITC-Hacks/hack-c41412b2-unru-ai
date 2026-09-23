@@ -1,0 +1,14 @@
+{
+  "source_commit": "6e5da22",
+  "fresh_tracked_copy": "/private/tmp/moneygraph-phase8-check",
+  "environment": "Reuse of clean README-installed Python 3.12 environment /private/tmp/moneygraph-final-20260923/.venv; no dependency changes",
+  "python_tests": 92,
+  "js_renderer_checks": 7,
+  "baseline_pipeline_seconds": 0.4971,
+  "pattern_seconds": 0.2519,
+  "patterns_exact_match_excluding_runtime": true,
+  "phase1_csv_sha256_match": true,
+  "archive_available": true,
+  "api_key_absent": true,
+  "independent_nx_simple_cycles_reference_match": 210
+}
