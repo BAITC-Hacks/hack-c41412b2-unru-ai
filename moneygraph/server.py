@@ -12,7 +12,7 @@ from pydantic import BaseModel, Field, ConfigDict
 from .analyst import Analyst
 from .resilience import build as build_resilience, SIZES as REMOVAL_SIZES
 from .archive import read_archive, SOURCE as ARCHIVE_SOURCE
-from fastapi.responses import FileResponse, StreamingResponse
+from fastapi.responses import FileResponse, StreamingResponse, HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from .pipeline import ROOT, DEFAULT_DATA, run
 from .observability import QUEUES
@@ -124,6 +124,11 @@ def create_app(data=DEFAULT_DATA, out=ROOT / 'outputs'):
     app.state.store = store
     app.state.analyst = Analyst(store)
     app.state.resilience, app.state.resilience_build_seconds = build_resilience(store)
+
+    @app.get('/methodology', response_class=HTMLResponse)
+    def methodology(gid: str | None = Query(None, pattern=r'^[0-9]{1,20}$')):
+        from .methodology import render
+        return render(store, app.state.resilience, gid)
 
     @app.get('/ai-archive')
     def ai_archive_page():

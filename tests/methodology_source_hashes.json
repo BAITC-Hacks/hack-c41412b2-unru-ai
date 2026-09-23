@@ -1,0 +1,12 @@
+{
+  "moneygraph/features.py": "7f70ba8247e066bb1d3d2f35e8afd563c7126cb1bd30fd33cdd4fae5494564f2",
+  "moneygraph/roles.py": "8c601105e2aed0661445411713ab52f5354c688d8c5376b7aa6dba7cc0494e91",
+  "moneygraph/communities.py": "350e09ceffc60d85fb62d0c44f3cb872c32115ce7c206c7a15cf00360c4d6c4c",
+  "moneygraph/observability.py": "21af0dfca2cd7f3f16bdd4783b5c2f79560b6660c71717917cb79ffd1918b1db",
+  "moneygraph/evidence.py": "f579faa4dae5d173d70b92622ee577dfc32708f6746e78d2f7d1625aa70ca032",
+  "moneygraph/convergence.py": "58316ffc7ac7499066839d00f9db86afd2558a11fd29a679cfbee728a1be5c89",
+  "moneygraph/stability.py": "3098beae246f2ca79c9021c03313f261a50299c7d7f33b284bacf738f67e56e9",
+  "moneygraph/resilience.py": "76825df58269e94f6fff4b593df7733d37a9ee97784cbac7013e299efde79339",
+  "moneygraph/patterns.py": "8dac8ec14c56302449fbde6b5cecd37d5718d3172fab9d90b0917b823b9a678b",
+  "moneygraph/analyst.py": "cd380ac36f19445823e0f7324d2d48609f92a02d25b3f482833ab484d4f8d4f6"
+}
