@@ -5,6 +5,7 @@ import hashlib
 import json
 import time
 from pathlib import Path
+from typing import Annotated
 import pandas as pd
 from fastapi import FastAPI, HTTPException, Query, Request
 from pydantic import BaseModel, Field, ConfigDict
@@ -24,6 +25,7 @@ class AnalystQuestion(BaseModel):
     gid: str = Field(pattern=r'^[0-9]{1,20}$')
     question: str = Field(min_length=1, max_length=1500)
     compare_gid: str | None = Field(default=None, pattern=r'^[0-9]{1,20}$')
+    source_gids: list[Annotated[str, Field(pattern=r'^[0-9]{1,20}$')]] | None = Field(default=None,min_length=1,max_length=5)
 
 
 class Store:
@@ -131,7 +133,7 @@ def create_app(data=DEFAULT_DATA, out=ROOT / 'outputs'):
         store.node(body.gid)
         if body.compare_gid: store.node(body.compare_gid)
         def stream():
-            for event in app.state.analyst.events(body.gid, body.question, body.compare_gid):
+            for event in app.state.analyst.events(body.gid, body.question, body.compare_gid, body.source_gids):
                 yield json.dumps(event, ensure_ascii=False, allow_nan=False) + '\n'
         return StreamingResponse(stream(), media_type='application/x-ndjson', headers={'Cache-Control':'no-store'})
 

@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="ru">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>MoneyGraph Investigator</title><link rel="stylesheet" href="/assets/style.css?v=7.0"><script defer src="/assets/app.js?v=7.0"></script></head>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>MoneyGraph Investigator</title><link rel="stylesheet" href="/assets/style.css?v=8.0"><script defer src="/assets/app.js?v=8.0"></script></head>
 <body>
 <header class="topbar"><div class="brand"><span class="brand-icon">M<span>G</span></span><div><h1>MoneyGraph <b>Investigator</b></h1><p>FINANCIAL NETWORK INTELLIGENCE</p></div></div><form id="search-form" class="search"><label for="gid-search">Поиск GID</label><div><input id="gid-search" inputmode="numeric" autocomplete="off" placeholder="Введите полный GID или начало" aria-label="Поиск GID"><button type="submit">Найти <span>↗</span></button></div><div id="search-results" class="search-results" hidden></div></form><div class="local"><i></i> Локальная аналитика<span>HackAlem · UNRU AI</span></div></header>
 <main>
@@ -23,6 +23,7 @@
 <div class="panel-head"><div><p class="eyebrow">AI INVESTIGATION ANALYST</p><h3>Проверить гипотезу, найти возражения</h3></div><span id="ai-status" class="small">Проверяем доступность…</span></div>
 <p class="explanation">Выбранный GID: <strong id="ai-gid">—</strong>. AI получает вопрос и результаты вызванных инструментов для указанных узлов. Данные передаются в OpenAI только после отправки вопроса.</p>
 <p><a id="ai-archive-link" href="/ai-archive">Открыть сохранённые реальные AI-ответы — без ключа ↗</a></p><div class="ai-actions"><button type="button" data-ai-prompt="Почему этот узел приоритетный?">Почему этот узел приоритетный?</button><button type="button" data-ai-prompt="Оспорь основную гипотезу по этому узлу. Найди факты против неё.">Оспорить основную гипотезу</button><button type="button" data-ai-prompt="Каких данных здесь не хватает и зачем их запрашивать?">Каких данных не хватает?</button><button type="button" id="ai-compare">Сравнить с другим узлом</button></div>
+<div class="ai-form-row"><label for="ai-sources">Исходные GID (1–5, через пробел или запятую)</label><input id="ai-sources" placeholder="GID1, GID2, GID3…"><button id="ai-downstream" disabled type="button">Кто собирает с этих узлов?</button></div>
 <form id="ai-form"><label for="ai-question">Вопрос AI-аналитику</label><textarea id="ai-question" maxlength="1500" rows="2" placeholder="Почему стоит проверить этот узел?" required></textarea><div class="ai-form-row"><label for="ai-other">Другой GID (для сравнения)</label><input id="ai-other" inputmode="numeric" pattern="[0-9]{1,20}" placeholder="Точный GID"><button id="ai-submit" type="submit">Проверить гипотезу</button></div></form>
 <div id="ai-activity" role="status" aria-live="polite"></div><div id="ai-answer" aria-live="polite"></div>
 <p class="explanation">AI не меняет роли и рейтинг. Ответ — интерпретация наблюдений, которую нужно сверить с источниками.</p>

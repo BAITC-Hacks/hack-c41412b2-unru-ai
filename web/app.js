@@ -144,7 +144,7 @@ function resetAnalystNode(gid) {
   aiSequence++; if(aiController) aiController.abort(); aiController=null;
   $('ai-archive-link').href='/ai-archive?gid='+encodeURIComponent(gid);
   $('ai-gid').textContent=gid; $('ai-answer').replaceChildren(); $('ai-activity').textContent='';
-  $('ai-submit').disabled=!aiAvailable;
+  $('ai-submit').disabled=!aiAvailable; $('ai-downstream').disabled=!aiAvailable;
 }
 function renderAnalystEvent(event) {
   if(event.type==='activity') {
@@ -167,15 +167,15 @@ function renderAnalystEvent(event) {
   const sources=document.createElement('details'), title=document.createElement('summary'), list=document.createElement('p');title.textContent='Проверенные источники: инструменты';
   list.textContent=event.trace.map(t=>`${t.source_id}: ${t.tool} (${Object.values(t.arguments).join(', ')})`).join('\n');sources.append(title,list);$('ai-answer').append(sources);
 }
-async function askAnalyst(question) {
+async function askAnalyst(question,sourceGids=null) {
   if(!state.gid || !aiAvailable) return;
   if(aiController) aiController.abort(); aiController=new AbortController();
   const seq=++aiSequence, gid=state.gid, controller=aiController;
-  $('ai-answer').replaceChildren();$('ai-activity').textContent='';$('ai-submit').disabled=true;
+  $('ai-answer').replaceChildren();$('ai-activity').textContent='';$('ai-submit').disabled=true; $('ai-downstream').disabled=true;
   const timer=setTimeout(()=>controller.abort(),150000);
   try {
     const response=await fetch('/api/analyst/ask',{method:'POST',headers:{'Content-Type':'application/json'},signal:controller.signal,
-      body:JSON.stringify({gid,question,compare_gid:$('ai-other').value.trim()||null})});
+      body:JSON.stringify({gid,question,compare_gid:sourceGids?null:($('ai-other').value.trim()||null),source_gids:sourceGids})});
     if(!response.ok) throw new Error(`Запрос отклонён (${response.status}). Проверьте GID.`);
     const reader=response.body.getReader(), decoder=new TextDecoder(); let buffer='',completed=false;
     while(true) {
@@ -191,12 +191,12 @@ async function askAnalyst(question) {
     if(!completed)throw new Error('AI не завершил ответ. Повторите запрос.');
   } catch(error) {
     if(seq===aiSequence) { $('ai-answer').textContent=error.name==='AbortError'?'Запрос остановлен или истекло время ожидания.':(error.message||'AI недоступен'); }
-  } finally { clearTimeout(timer);if(seq===aiSequence){$('ai-submit').disabled=!aiAvailable;aiController=null;} }
+  } finally { clearTimeout(timer);if(seq===aiSequence){$('ai-submit').disabled=!aiAvailable; $('ai-downstream').disabled=!aiAvailable;aiController=null;} }
 }
 $('ai-form').addEventListener('submit',e=>{e.preventDefault();askAnalyst($('ai-question').value.trim());});
 document.querySelectorAll('[data-ai-prompt]').forEach(b=>b.addEventListener('click',()=>{$('ai-question').value=b.dataset.aiPrompt;askAnalyst(b.dataset.aiPrompt);}));
 $('ai-compare').addEventListener('click',()=>{$('ai-question').value='Почему выбранный узел выше или ниже другого? Назови также преимущество второго узла, если оно есть.';$('ai-other').focus();});
-api('/api/analyst/status').then(s=>{aiAvailable=s.available;$('ai-status').textContent=s.message;$('ai-submit').disabled=!aiAvailable;document.querySelectorAll('[data-ai-prompt]').forEach(b=>b.disabled=!aiAvailable);}).catch(()=>{$('ai-status').textContent='AI analyst unavailable';$('ai-submit').disabled=true;});
+api('/api/analyst/status').then(s=>{aiAvailable=s.available;$('ai-status').textContent=s.message;$('ai-submit').disabled=!aiAvailable; $('ai-downstream').disabled=!aiAvailable;document.querySelectorAll('[data-ai-prompt]').forEach(b=>b.disabled=!aiAvailable);}).catch(()=>{$('ai-status').textContent='AI analyst unavailable';$('ai-submit').disabled=true; $('ai-downstream').disabled=true;});
 
 
 let resilienceSeq=0;
@@ -214,3 +214,10 @@ async function loadResilience(n) {
 }
 document.querySelectorAll('[data-removal]').forEach(b=>b.addEventListener('click',()=>loadResilience(Number(b.dataset.removal))));
 loadResilience(0);
+
+$('ai-downstream').addEventListener('click',()=>{
+  const gids=[...new Set($('ai-sources').value.trim().split(/[\s,;]+/).filter(Boolean))];
+  if(gids.length<1||gids.length>5||!gids.every(g=>/^[0-9]{1,20}$/.test(g))){$('ai-answer').textContent='Введите от 1 до 5 точных GID через пробел или запятую.';return;}
+  const question='Кто может собирать деньги с этих узлов? Найди общих наблюдаемых downstream-кандидатов; отдельно укажи частичное покрытие. Это не доказательство движения тех же денег.';
+  $('ai-question').value=question;askAnalyst(question,gids);
+});
