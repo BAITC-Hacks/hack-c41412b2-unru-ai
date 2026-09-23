@@ -1,0 +1,360 @@
+{
+  "python_tests": 79,
+  "python_test_seconds": 8.85,
+  "js_renderer_checks": 3,
+  "build_all_scenarios_seconds": 0.044261,
+  "startup_pipeline_store_seconds": 0.66,
+  "scenarios": {
+    "0": {
+      "n_requested": 0,
+      "removed_count": 0,
+      "removed_gids": [],
+      "removed_seed_gids": [],
+      "before": {
+        "nodes": 2248,
+        "edges": 3119,
+        "weak_components": 35,
+        "largest_component": 1877,
+        "isolated_nodes": 19,
+        "seed_reachable_nodes": 2248,
+        "remaining_seeds": 81,
+        "multi_seed_components": 2
+      },
+      "after": {
+        "nodes": 2248,
+        "edges": 3119,
+        "weak_components": 35,
+        "largest_component": 1877,
+        "isolated_nodes": 19,
+        "seed_reachable_nodes": 2248,
+        "remaining_seeds": 81,
+        "multi_seed_components": 2
+      },
+      "component_count_delta": 0,
+      "new_fragments": 0,
+      "fully_removed_components": 0,
+      "reachability_loss": {
+        "total_nodes": 0,
+        "total_fraction": 0.0,
+        "removed_previously_reachable": 0,
+        "lost_surviving_nodes": 0,
+        "surviving_baseline_reachable": 2248,
+        "surviving_fraction": 0.0
+      },
+      "runtime_seconds": 0.008908,
+      "scope": "Структура наблюдаемого графа после гипотетического удаления узлов. Не прогноз реальной реакции сети.",
+      "reach_definition": "Направленная достижимость от любого оставшегося seed, включая сам seed. Общая потеря включает удалённые узлы; потеря среди оставшихся показана отдельно.",
+      "removed_nodes": []
+    },
+    "1": {
+      "n_requested": 1,
+      "removed_count": 1,
+      "removed_gids": [
+        "100000003684369100"
+      ],
+      "removed_seed_gids": [
+        "100000003684369100"
+      ],
+      "before": {
+        "nodes": 2248,
+        "edges": 3119,
+        "weak_components": 35,
+        "largest_component": 1877,
+        "isolated_nodes": 19,
+        "seed_reachable_nodes": 2248,
+        "remaining_seeds": 81,
+        "multi_seed_components": 2
+      },
+      "after": {
+        "nodes": 2247,
+        "edges": 3033,
+        "weak_components": 72,
+        "largest_component": 1818,
+        "isolated_nodes": 50,
+        "seed_reachable_nodes": 2180,
+        "remaining_seeds": 80,
+        "multi_seed_components": 2
+      },
+      "component_count_delta": 37,
+      "new_fragments": 37,
+      "fully_removed_components": 0,
+      "reachability_loss": {
+        "total_nodes": 68,
+        "total_fraction": 0.030249110320284697,
+        "removed_previously_reachable": 1,
+        "lost_surviving_nodes": 67,
+        "surviving_baseline_reachable": 2247,
+        "surviving_fraction": 0.029817534490431688
+      },
+      "runtime_seconds": 0.008123,
+      "scope": "Структура наблюдаемого графа после гипотетического удаления узлов. Не прогноз реальной реакции сети.",
+      "reach_definition": "Направленная достижимость от любого оставшегося seed, включая сам seed. Общая потеря включает удалённые узлы; потеря среди оставшихся показана отдельно.",
+      "removed_nodes": [
+        {
+          "gid": "100000003684369100",
+          "is_seed": true,
+          "priority_score": 0.9972465231045311
+        }
+      ]
+    },
+    "3": {
+      "n_requested": 3,
+      "removed_count": 3,
+      "removed_gids": [
+        "100000003684369100",
+        "100000003016635100",
+        "100000008603629100"
+      ],
+      "removed_seed_gids": [
+        "100000003684369100",
+        "100000003016635100"
+      ],
+      "before": {
+        "nodes": 2248,
+        "edges": 3119,
+        "weak_components": 35,
+        "largest_component": 1877,
+        "isolated_nodes": 19,
+        "seed_reachable_nodes": 2248,
+        "remaining_seeds": 81,
+        "multi_seed_components": 2
+      },
+      "after": {
+        "nodes": 2245,
+        "edges": 2872,
+        "weak_components": 133,
+        "largest_component": 1713,
+        "isolated_nodes": 93,
+        "seed_reachable_nodes": 2029,
+        "remaining_seeds": 79,
+        "multi_seed_components": 2
+      },
+      "component_count_delta": 98,
+      "new_fragments": 98,
+      "fully_removed_components": 0,
+      "reachability_loss": {
+        "total_nodes": 219,
+        "total_fraction": 0.09741992882562278,
+        "removed_previously_reachable": 3,
+        "lost_surviving_nodes": 216,
+        "surviving_baseline_reachable": 2245,
+        "surviving_fraction": 0.09621380846325167
+      },
+      "runtime_seconds": 0.008294,
+      "scope": "Структура наблюдаемого графа после гипотетического удаления узлов. Не прогноз реальной реакции сети.",
+      "reach_definition": "Направленная достижимость от любого оставшегося seed, включая сам seed. Общая потеря включает удалённые узлы; потеря среди оставшихся показана отдельно.",
+      "removed_nodes": [
+        {
+          "gid": "100000003684369100",
+          "is_seed": true,
+          "priority_score": 0.9972465231045311
+        },
+        {
+          "gid": "100000003016635100",
+          "is_seed": true,
+          "priority_score": 0.9939154329295649
+        },
+        {
+          "gid": "100000008603629100",
+          "is_seed": false,
+          "priority_score": 0.9934611933602511
+        }
+      ]
+    },
+    "5": {
+      "n_requested": 5,
+      "removed_count": 5,
+      "removed_gids": [
+        "100000003684369100",
+        "100000003016635100",
+        "100000008603629100",
+        "100000000331309100",
+        "100000008477350100"
+      ],
+      "removed_seed_gids": [
+        "100000003684369100",
+        "100000003016635100"
+      ],
+      "before": {
+        "nodes": 2248,
+        "edges": 3119,
+        "weak_components": 35,
+        "largest_component": 1877,
+        "isolated_nodes": 19,
+        "seed_reachable_nodes": 2248,
+        "remaining_seeds": 81,
+        "multi_seed_components": 2
+      },
+      "after": {
+        "nodes": 2243,
+        "edges": 2718,
+        "weak_components": 210,
+        "largest_component": 1584,
+        "isolated_nodes": 143,
+        "seed_reachable_nodes": 1890,
+        "remaining_seeds": 79,
+        "multi_seed_components": 2
+      },
+      "component_count_delta": 175,
+      "new_fragments": 175,
+      "fully_removed_components": 0,
+      "reachability_loss": {
+        "total_nodes": 358,
+        "total_fraction": 0.1592526690391459,
+        "removed_previously_reachable": 5,
+        "lost_surviving_nodes": 353,
+        "surviving_baseline_reachable": 2243,
+        "surviving_fraction": 0.15737851092287117
+      },
+      "runtime_seconds": 0.008057,
+      "scope": "Структура наблюдаемого графа после гипотетического удаления узлов. Не прогноз реальной реакции сети.",
+      "reach_definition": "Направленная достижимость от любого оставшегося seed, включая сам seed. Общая потеря включает удалённые узлы; потеря среди оставшихся показана отдельно.",
+      "removed_nodes": [
+        {
+          "gid": "100000003684369100",
+          "is_seed": true,
+          "priority_score": 0.9972465231045311
+        },
+        {
+          "gid": "100000003016635100",
+          "is_seed": true,
+          "priority_score": 0.9939154329295649
+        },
+        {
+          "gid": "100000008603629100",
+          "is_seed": false,
+          "priority_score": 0.9934611933602511
+        },
+        {
+          "gid": "100000000331309100",
+          "is_seed": false,
+          "priority_score": 0.9902970007432627
+        },
+        {
+          "gid": "100000008477350100",
+          "is_seed": false,
+          "priority_score": 0.9890646029609691
+        }
+      ]
+    },
+    "10": {
+      "n_requested": 10,
+      "removed_count": 10,
+      "removed_gids": [
+        "100000003684369100",
+        "100000003016635100",
+        "100000008603629100",
+        "100000000331309100",
+        "100000008477350100",
+        "100000006866783100",
+        "100000000437046100",
+        "100000000343175100",
+        "100000008165763100",
+        "100000005933757100"
+      ],
+      "removed_seed_gids": [
+        "100000003684369100",
+        "100000003016635100",
+        "100000006866783100",
+        "100000000343175100"
+      ],
+      "before": {
+        "nodes": 2248,
+        "edges": 3119,
+        "weak_components": 35,
+        "largest_component": 1877,
+        "isolated_nodes": 19,
+        "seed_reachable_nodes": 2248,
+        "remaining_seeds": 81,
+        "multi_seed_components": 2
+      },
+      "after": {
+        "nodes": 2238,
+        "edges": 2479,
+        "weak_components": 313,
+        "largest_component": 1426,
+        "isolated_nodes": 219,
+        "seed_reachable_nodes": 1640,
+        "remaining_seeds": 77,
+        "multi_seed_components": 2
+      },
+      "component_count_delta": 278,
+      "new_fragments": 278,
+      "fully_removed_components": 0,
+      "reachability_loss": {
+        "total_nodes": 608,
+        "total_fraction": 0.2704626334519573,
+        "removed_previously_reachable": 10,
+        "lost_surviving_nodes": 598,
+        "surviving_baseline_reachable": 2238,
+        "surviving_fraction": 0.26720285969615726
+      },
+      "runtime_seconds": 0.00807,
+      "scope": "Структура наблюдаемого графа после гипотетического удаления узлов. Не прогноз реальной реакции сети.",
+      "reach_definition": "Направленная достижимость от любого оставшегося seed, включая сам seed. Общая потеря включает удалённые узлы; потеря среди оставшихся показана отдельно.",
+      "removed_nodes": [
+        {
+          "gid": "100000003684369100",
+          "is_seed": true,
+          "priority_score": 0.9972465231045311
+        },
+        {
+          "gid": "100000003016635100",
+          "is_seed": true,
+          "priority_score": 0.9939154329295649
+        },
+        {
+          "gid": "100000008603629100",
+          "is_seed": false,
+          "priority_score": 0.9934611933602511
+        },
+        {
+          "gid": "100000000331309100",
+          "is_seed": false,
+          "priority_score": 0.9902970007432627
+        },
+        {
+          "gid": "100000008477350100",
+          "is_seed": false,
+          "priority_score": 0.9890646029609691
+        },
+        {
+          "gid": "100000006866783100",
+          "is_seed": true,
+          "priority_score": 0.9886832660385825
+        },
+        {
+          "gid": "100000000437046100",
+          "is_seed": false,
+          "priority_score": 0.9882009869896813
+        },
+        {
+          "gid": "100000000343175100",
+          "is_seed": true,
+          "priority_score": 0.9838772992373264
+        },
+        {
+          "gid": "100000008165763100",
+          "is_seed": false,
+          "priority_score": 0.9836922386720504
+        },
+        {
+          "gid": "100000005933757100",
+          "is_seed": false,
+          "priority_score": 0.9807986956812258
+        }
+      ]
+    }
+  },
+  "browser_checked": [
+    0,
+    10,
+    1,
+    3,
+    5,
+    0
+  ],
+  "browser_console_errors": [],
+  "baseline_store_unchanged": true,
+  "frozen_core_ai_stability_artifacts_unchanged": true
+}

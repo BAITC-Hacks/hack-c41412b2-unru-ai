@@ -197,3 +197,20 @@ $('ai-form').addEventListener('submit',e=>{e.preventDefault();askAnalyst($('ai-q
 document.querySelectorAll('[data-ai-prompt]').forEach(b=>b.addEventListener('click',()=>{$('ai-question').value=b.dataset.aiPrompt;askAnalyst(b.dataset.aiPrompt);}));
 $('ai-compare').addEventListener('click',()=>{$('ai-question').value='Почему выбранный узел выше или ниже другого? Назови также преимущество второго узла, если оно есть.';$('ai-other').focus();});
 api('/api/analyst/status').then(s=>{aiAvailable=s.available;$('ai-status').textContent=s.message;$('ai-submit').disabled=!aiAvailable;document.querySelectorAll('[data-ai-prompt]').forEach(b=>b.disabled=!aiAvailable);}).catch(()=>{$('ai-status').textContent='AI analyst unavailable';$('ai-submit').disabled=true;});
+
+
+let resilienceSeq=0;
+async function loadResilience(n) {
+  const seq=++resilienceSeq;
+  $('resilience-result').textContent='Загружаем рассчитанный сценарий…';
+  try {
+    const data=await api('/api/resilience?n='+n);if(seq!==resilienceSeq)return;
+    document.querySelectorAll('[data-removal]').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.removal)===n)));
+    const rows=[['Узлы','nodes'],['Слабосвязные компоненты','weak_components'],['Крупнейшая компонента','largest_component'],['Изолированные узлы','isolated_nodes'],['Достижимы от seed','seed_reachable_nodes'],['Оставшиеся seed','remaining_seeds'],['Компоненты с несколькими seed','multi_seed_components']];
+    const loss=data.reachability_loss;
+    const percent=value=>value===null?'N/A':fmt(value*100)+'%';
+    $('resilience-result').innerHTML=`<p><strong>${n?'Гипотетически удалено узлов: '+data.removed_count:'Исходный граф · удаление не применяется'}</strong></p><div class="resilience-table"><table><thead><tr><th>Показатель</th><th>До</th><th>После</th></tr></thead><tbody>${rows.map(([label,key])=>`<tr><td>${label}</td><td>${data.before[key]}</td><td>${data.after[key]}</td></tr>`).join('')}</tbody></table></div><p>Общая потеря достижимости: <strong>${percent(loss.total_fraction)}</strong> (${loss.total_nodes} узлов).</p><p class="explanation">Из ранее достижимых удалено узлов: ${loss.removed_previously_reachable}; ещё ${loss.lost_surviving_nodes} оставшихся потеряли путь от seed (${percent(loss.surviving_fraction)} от ранее достижимых оставшихся). Seed включает себя в достижимость.</p><p>Дополнительных фрагментов при распаде: <strong>${data.new_fragments}</strong>. Изменение числа компонент: ${data.component_count_delta>=0?'+':''}${data.component_count_delta}. Полностью исчезнувших компонент: ${data.fully_removed_components}.</p>${data.removed_nodes.length?`<details><summary>Удалённые GID · seed среди них: ${data.removed_seed_gids.length}</summary><ul>${data.removed_nodes.map(node=>`<li>${esc(node.gid)} ${node.is_seed?'· SEED':''} · priority ${fixed(node.priority_score)}</li>`).join('')}</ul></details>`:''}<p class="explanation">Расчёт сценария: ${fmt(data.runtime_seconds*1000)} мс. Компоненты связности — не Louvain-кластеры.</p>`;
+  }catch(error){if(seq===resilienceSeq)$('resilience-result').textContent='Симуляция недоступна: '+error.message;}
+}
+document.querySelectorAll('[data-removal]').forEach(b=>b.addEventListener('click',()=>loadResilience(Number(b.dataset.removal))));
+loadResilience(0);

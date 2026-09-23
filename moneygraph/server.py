@@ -9,6 +9,7 @@ import pandas as pd
 from fastapi import FastAPI, HTTPException, Query, Request
 from pydantic import BaseModel, Field, ConfigDict
 from .analyst import Analyst
+from .resilience import build as build_resilience, SIZES as REMOVAL_SIZES
 from .archive import read_archive, SOURCE as ARCHIVE_SOURCE
 from fastapi.responses import FileResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
@@ -102,6 +103,7 @@ def create_app(data=DEFAULT_DATA, out=ROOT / 'outputs'):
     app = FastAPI(title='MoneyGraph Investigator', version='0.3.0')
     app.state.store = store
     app.state.analyst = Analyst(store)
+    app.state.resilience, app.state.resilience_build_seconds = build_resilience(store)
 
     @app.get('/ai-archive')
     def ai_archive_page():
@@ -133,6 +135,12 @@ def create_app(data=DEFAULT_DATA, out=ROOT / 'outputs'):
                 yield json.dumps(event, ensure_ascii=False, allow_nan=False) + '\n'
         return StreamingResponse(stream(), media_type='application/x-ndjson', headers={'Cache-Control':'no-store'})
 
+
+    @app.get('/api/resilience')
+    def resilience(n: int = Query(0)):
+        if n not in REMOVAL_SIZES:
+            raise HTTPException(422, 'Supported N: 0, 1, 3, 5, 10')
+        return copy.deepcopy(app.state.resilience[n])
 
     @app.get('/api/stability/summary')
     def stability_summary():
