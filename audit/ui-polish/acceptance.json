@@ -1,0 +1,45 @@
+{
+  "commit": "224c4304c5ad9bb02128121c8b9b1c946a28e670",
+  "fresh_clone": true,
+  "fresh_venv": true,
+  "readme_dependencies_only": true,
+  "no_env_file": true,
+  "live_ai_available": false,
+  "offline_archive_available": true,
+  "nodes": 2248,
+  "random_gids_checked": [
+    "100000008576243100",
+    "100000002757240100",
+    "100000005782886100"
+  ],
+  "csv_sha256": {
+    "nodes_roles.csv": "6546f308c2a18aa1ffd439806ed2cace53283462532429d5cc99c7c636993591",
+    "clusters.csv": "80eccad28ac4c5e2f47bfb81a17c84ef3a840135b24d9f4c799ac37df268a0ae",
+    "top_nodes.csv": "20197ec57bd1d27b371053be3e1de4e8ef8f59de7f8b05817d92c45ca950452b"
+  },
+  "routes_checked": [
+    "/",
+    "/methodology",
+    "/api/patterns/summary",
+    "/api/stability/summary",
+    "/api/resilience?n=10"
+  ],
+  "git_status_after_run": " M outputs/patterns.json\n M outputs/run_report.json\n M outputs/stability.json\n",
+  "json_differences_after_run": {
+    "run_report.json": [
+      "elapsed_seconds"
+    ],
+    "patterns.json": [
+      "elapsed_seconds"
+    ],
+    "stability.json": [
+      "elapsed_seconds"
+    ]
+  },
+  "history_secret_scan": {
+    "text_blobs_checked": 173,
+    "token_pattern_matches": 0,
+    "tracked_env_files": 0,
+    "scope": "Text blobs, common OpenAI/GitHub token patterns; not image OCR or proof against every secret format"
+  }
+}
