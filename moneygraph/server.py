@@ -41,6 +41,11 @@ class Store:
             raise ValueError('Structural evidence coverage mismatch; rerun pipeline')
         for record in evidence['nodes']:
             self.nodes[record['gid']].update(record)
+        convergence = json.loads((self.out / 'seed_convergence.json').read_text())
+        if set(self.nodes) != {n['gid'] for n in convergence['nodes']}:
+            raise ValueError('Seed convergence coverage mismatch; rerun pipeline')
+        for record in convergence['nodes']:
+            self.nodes[record['gid']].update(record)
         self.edges, self.adj = [], {gid: set() for gid in self.nodes}
         for row in pd.read_parquet(Path(data) / 'edges.parquet').itertuples(index=False):
             edge = {'src': str(row.src), 'dst': str(row.dst), 'sum_kzt': float(row.sum_kzt), 'n_tx': int(row.n_tx)}

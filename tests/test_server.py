@@ -111,3 +111,13 @@ def test_structural_evidence_api_keeps_na_distinct_from_observed_zero(client):
     assert n['evidence_details']['fan_in']['value']==3
     d=client.get('/api/nodes/100000003016635100').json()['structural_dependency']
     assert d['dominated_nodes']==102 and d['dominated_clusters']==10
+
+
+def test_seed_convergence_api_exact_ids_and_unmodified_reach(client, app):
+    for gid in ['100000003115284100','100000003016635100','100000003037476100']:
+        node = client.get('/api/nodes/'+gid).json()
+        c = node['seed_convergence']
+        assert c['reachable_seed_count'] == node['reachable_seed_count']
+        assert c['external_seed_count'] == c['reachable_seed_count'] - int(node['is_seed'])
+        assert all(isinstance(b['predecessor_gid'],str) for b in c['branches'])
+        assert c['last_hop_effective_branches'] >= 0

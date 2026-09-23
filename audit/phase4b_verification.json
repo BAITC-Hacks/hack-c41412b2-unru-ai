@@ -1,0 +1,207 @@
+{
+  "tests_passed": 48,
+  "pytest_seconds": 5.33,
+  "pipeline_seconds": 0.4416,
+  "run_wall_seconds": 0.4483,
+  "pipeline_and_store_startup_seconds": 0.545,
+  "distribution": {
+    "zero": 50,
+    "one": 1806,
+    "above_one": 392,
+    "mean": 1.303077554587599,
+    "median": 1.0,
+    "max": 20.06032591831256
+  },
+  "clusters_total": 91,
+  "clusters_multiple_seeds": 8,
+  "examples": {
+    "A": {
+      "gid": "100000005523088100",
+      "reachable_seed_count": 16,
+      "external_seed_count": 15,
+      "self_seed_excluded": true,
+      "last_hop_effective_branches": 1.0,
+      "supported_predecessor_count": 1,
+      "branches": [
+        {
+          "predecessor_gid": "100000004041163100",
+          "seed_count": 15,
+          "seed_credit_mass": 15.0,
+          "share": 1.0
+        }
+      ]
+    },
+    "B": {
+      "gid": "100000003684369100",
+      "reachable_seed_count": 10,
+      "external_seed_count": 9,
+      "self_seed_excluded": true,
+      "last_hop_effective_branches": 20.06032591831256,
+      "supported_predecessor_count": 23,
+      "branches": [
+        {
+          "predecessor_gid": "100000000089154100",
+          "seed_count": 7,
+          "seed_credit_mass": 0.33116883116883117,
+          "share": 0.0367965367965368
+        },
+        {
+          "predecessor_gid": "100000001102676100",
+          "seed_count": 8,
+          "seed_credit_mass": 0.8311688311688311,
+          "share": 0.09235209235209235
+        },
+        {
+          "predecessor_gid": "100000002723538100",
+          "seed_count": 7,
+          "seed_credit_mass": 0.33116883116883117,
+          "share": 0.0367965367965368
+        },
+        {
+          "predecessor_gid": "100000003178549100",
+          "seed_count": 7,
+          "seed_credit_mass": 0.33116883116883117,
+          "share": 0.0367965367965368
+        },
+        {
+          "predecessor_gid": "100000003213473100",
+          "seed_count": 7,
+          "seed_credit_mass": 0.33116883116883117,
+          "share": 0.0367965367965368
+        },
+        {
+          "predecessor_gid": "100000003528285100",
+          "seed_count": 7,
+          "seed_credit_mass": 0.33116883116883117,
+          "share": 0.0367965367965368
+        },
+        {
+          "predecessor_gid": "100000003582677100",
+          "seed_count": 7,
+          "seed_credit_mass": 0.33116883116883117,
+          "share": 0.0367965367965368
+        },
+        {
+          "predecessor_gid": "100000003796063100",
+          "seed_count": 7,
+          "seed_credit_mass": 0.33116883116883117,
+          "share": 0.0367965367965368
+        },
+        {
+          "predecessor_gid": "100000003880331100",
+          "seed_count": 7,
+          "seed_credit_mass": 0.33116883116883117,
+          "share": 0.0367965367965368
+        },
+        {
+          "predecessor_gid": "100000004070318100",
+          "seed_count": 7,
+          "seed_credit_mass": 0.33116883116883117,
+          "share": 0.0367965367965368
+        },
+        {
+          "predecessor_gid": "100000004077081100",
+          "seed_count": 7,
+          "seed_credit_mass": 0.33116883116883117,
+          "share": 0.0367965367965368
+        },
+        {
+          "predecessor_gid": "100000004140487100",
+          "seed_count": 7,
+          "seed_credit_mass": 0.33116883116883117,
+          "share": 0.0367965367965368
+        },
+        {
+          "predecessor_gid": "100000004351795100",
+          "seed_count": 7,
+          "seed_credit_mass": 0.33116883116883117,
+          "share": 0.0367965367965368
+        },
+        {
+          "predecessor_gid": "100000004358004100",
+          "seed_count": 1,
+          "seed_credit_mass": 0.5,
+          "share": 0.05555555555555555
+        },
+        {
+          "predecessor_gid": "100000004390333100",
+          "seed_count": 7,
+          "seed_credit_mass": 0.33116883116883117,
+          "share": 0.0367965367965368
+        },
+        {
+          "predecessor_gid": "100000004450649100",
+          "seed_count": 7,
+          "seed_credit_mass": 0.33116883116883117,
+          "share": 0.0367965367965368
+        },
+        {
+          "predecessor_gid": "100000004847758100",
+          "seed_count": 7,
+          "seed_credit_mass": 0.33116883116883117,
+          "share": 0.0367965367965368
+        },
+        {
+          "predecessor_gid": "100000005910114100",
+          "seed_count": 7,
+          "seed_credit_mass": 0.33116883116883117,
+          "share": 0.0367965367965368
+        },
+        {
+          "predecessor_gid": "100000007639767100",
+          "seed_count": 7,
+          "seed_credit_mass": 0.33116883116883117,
+          "share": 0.0367965367965368
+        },
+        {
+          "predecessor_gid": "100000007864477100",
+          "seed_count": 7,
+          "seed_credit_mass": 0.33116883116883117,
+          "share": 0.0367965367965368
+        },
+        {
+          "predecessor_gid": "100000008223661100",
+          "seed_count": 8,
+          "seed_credit_mass": 1.3311688311688312,
+          "share": 0.1479076479076479
+        },
+        {
+          "predecessor_gid": "100000008304139100",
+          "seed_count": 7,
+          "seed_credit_mass": 0.33116883116883117,
+          "share": 0.0367965367965368
+        },
+        {
+          "predecessor_gid": "100000008748914100",
+          "seed_count": 1,
+          "seed_credit_mass": 0.045454545454545456,
+          "share": 0.005050505050505051
+        }
+      ]
+    },
+    "C": {
+      "gid": "100000000031787100",
+      "reachable_seed_count": 1,
+      "external_seed_count": 1,
+      "self_seed_excluded": false,
+      "last_hop_effective_branches": 1.0,
+      "supported_predecessor_count": 1,
+      "branches": [
+        {
+          "predecessor_gid": "100000000267734100",
+          "seed_count": 1,
+          "seed_credit_mass": 1.0,
+          "share": 1.0
+        }
+      ]
+    }
+  },
+  "browser_checked_gids": [
+    "100000005523088100",
+    "100000003684369100",
+    "100000000031787100",
+    "100000003115284100"
+  ],
+  "browser_console_errors": [],
+  "frozen_artifacts_sha256_verified": true
+}
