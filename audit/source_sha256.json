@@ -1,0 +1,11 @@
+{
+  "source/README.md": "b75c54a5b2e653c21bc0fb87a7d422ee590daf4d380d224abbb4fa6d393df26e",
+  "source/data/data/edges.parquet": "4e71dde5cd3115bcb26e91202665532ee6581cf8233a9fc8059ea59fb7358a38",
+  "source/data/data/nodes.parquet": "d2a45b0df6e9352832d5fb09839d10b9e23f898156c3bab263b051b31cc0296d",
+  "source/data/data/transactions.parquet": "c30c5317b5439591dde86f2058dc47a3d19b2900c055ded994fe547f6fb7e7da",
+  "source/data.zip": "0ce15a932439d076033cba159ca7ede8bf49f188892bb4cc0809b1af49492d72",
+  "source/starter/starter/README.md": "7e7024ab0ff98cb435a291112c55ece7f09a2c640490cd218a343b0c8a3d5a3c",
+  "source/starter/starter/requirements.txt": "ea287c15a50d9d30b0bac2eacf3f29f8515b0107e27597b9b6efa10bf6cd47a9",
+  "source/starter/starter/starter.py": "21a16355f8c6a7f19f6ab29163ab864638bdea20c55ae52262c591f93b95ee46",
+  "source/starter.zip": "89ca8991a81c19bb3880fa2012e34e3c95d3ea6293992ca818667371a04e7112"
+}

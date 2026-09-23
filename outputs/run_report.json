@@ -1,0 +1,55 @@
+{
+  "nodes": 2248,
+  "edges": 3119,
+  "transactions": 4840,
+  "seed": 81,
+  "sum_kzt": 365890012.01,
+  "duplicate_transaction_rows_retained": 97,
+  "weak_components_edge_graph": 16,
+  "weak_components_all_nodes": 35,
+  "isolated": 19,
+  "out_gt_in_audit": {
+    "all": {
+      "out_gt_in": 377,
+      "out_gt_in_plus_one_tiyn": 377
+    },
+    "seed": {
+      "out_gt_in": 42,
+      "out_gt_in_plus_one_tiyn": 42
+    },
+    "non_seed": {
+      "out_gt_in": 335,
+      "out_gt_in_plus_one_tiyn": 335
+    },
+    "positive_in": {
+      "out_gt_in": 354,
+      "out_gt_in_plus_one_tiyn": 354
+    },
+    "zero_in": {
+      "out_gt_in": 23,
+      "out_gt_in_plus_one_tiyn": 23
+    }
+  },
+  "role_counts": {
+    "peripheral": 1871,
+    "consolidator": 110,
+    "distributor": 96,
+    "transit": 62,
+    "terminal": 56,
+    "coordinator": 53
+  },
+  "clusters": 91,
+  "boundary_terminal_count": 0,
+  "elapsed_seconds": 0.3113,
+  "versions": {
+    "python": "3.12.14",
+    "pandas": "3.0.6",
+    "networkx": "3.6.1"
+  },
+  "input_sha256": {
+    "nodes.parquet": "d2a45b0df6e9352832d5fb09839d10b9e23f898156c3bab263b051b31cc0296d",
+    "edges.parquet": "4e71dde5cd3115bcb26e91202665532ee6581cf8233a9fc8059ea59fb7358a38",
+    "transactions.parquet": "c30c5317b5439591dde86f2058dc47a3d19b2900c055ded994fe547f6fb7e7da"
+  },
+  "interpretation": "Roles are hypotheses; scores are evidence strength / review priority, never guilt probabilities. Observed flows are not balances."
+}

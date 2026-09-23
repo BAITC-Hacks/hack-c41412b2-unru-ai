@@ -1,0 +1,11 @@
+{
+  "command": "python -m moneygraph.pipeline",
+  "full_process_seconds": 0.6331,
+  "exit_code": 0,
+  "tests_passed": 14,
+  "clean_environment": true,
+  "csv_byte_identity_verified": true,
+  "platform": "macOS arm64",
+  "python": "3.12.14",
+  "scope": "PHASE 1 only; UI and AI not implemented"
+}

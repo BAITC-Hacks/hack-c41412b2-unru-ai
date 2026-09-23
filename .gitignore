@@ -1,0 +1,15 @@
+# Local credentials
+.env
+.env.*
+!.env.example
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.DS_Store
+**/__MACOSX/
+**/._*
+# Original archives duplicate the extracted inputs
+*.zip
+# Historical starter output is not the competition result
+audit/starter_output/
