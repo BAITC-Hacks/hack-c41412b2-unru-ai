@@ -8,7 +8,7 @@ import time
 from pathlib import Path
 import networkx as nx
 import pandas as pd
-from . import communities, features, roles
+from . import communities, features, roles, observability
 from .io import NODE_COLUMNS, load_data, validate_outputs
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -28,6 +28,7 @@ def run(data=DEFAULT_DATA, out=ROOT / 'outputs', top_n=50):
     top = top[['gid', 'role', 'priority_score', 'priority_why']].rename(columns={'priority_why': 'why'}).reset_index(drop=True)
     top.insert(0, 'rank', range(1, len(top) + 1))
     validate_outputs(node_output, clusters, top, nodes.gid)
+    context = observability.build_context(f)
     delta = f.out_tiyn - f.in_tiyn
     comparisons = {}
     for label, mask in [('all', pd.Series(True, index=f.index)), ('seed', f.is_seed), ('non_seed', ~f.is_seed),
@@ -41,6 +42,7 @@ def run(data=DEFAULT_DATA, out=ROOT / 'outputs', top_n=50):
         'weak_components_edge_graph': nx.number_weakly_connected_components(edge_graph),
         'weak_components_all_nodes': nx.number_weakly_connected_components(graph), 'isolated': int(f.isolated.sum()),
         'out_gt_in_audit': comparisons, 'role_counts': f.role.value_counts().to_dict(), 'clusters': len(clusters),
+        'triage_summary': context['summary'],
         'boundary_terminal_count': int((f.boundary & f.role.eq('terminal')).sum()),
         'elapsed_seconds': round(time.perf_counter() - start, 4),
         'versions': {'python': platform.python_version(), 'pandas': pd.__version__, 'networkx': nx.__version__},
@@ -54,6 +56,8 @@ def run(data=DEFAULT_DATA, out=ROOT / 'outputs', top_n=50):
         stage = Path(tmp)
         for name, frame in [('nodes_roles.csv', node_output), ('clusters.csv', clusters), ('top_nodes.csv', top)]:
             frame.to_csv(stage / name, index=False, float_format='%.10f')
+        (stage / 'node_context.json').write_text(json.dumps(context, ensure_ascii=False, indent=2, allow_nan=False) + '\n')
+        report['elapsed_seconds'] = round(time.perf_counter() - start, 4)
         (stage / 'run_report.json').write_text(json.dumps(report, ensure_ascii=False, indent=2) + '\n')
         for file in stage.iterdir():
             file.replace(out / file.name)

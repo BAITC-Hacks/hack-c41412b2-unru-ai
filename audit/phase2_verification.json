@@ -1,0 +1,25 @@
+{
+  "command": "python -m moneygraph.pipeline",
+  "full_process_seconds": 0.5003,
+  "pipeline_seconds": 0.2765,
+  "exit_code": 0,
+  "tests_passed": 23,
+  "same_isolated_environment_as_phase1": true,
+  "csv_sha256": {
+    "nodes_roles.csv": "6546f308c2a18aa1ffd439806ed2cace53283462532429d5cc99c7c636993591",
+    "clusters.csv": "80eccad28ac4c5e2f47bfb81a17c84ef3a840135b24d9f4c799ac37df268a0ae",
+    "top_nodes.csv": "20197ec57bd1d27b371053be3e1de4e8ef8f59de7f8b05817d92c45ca950452b"
+  },
+  "triage_summary": {
+    "observability": {
+      "HIGH": 117,
+      "MEDIUM": 469,
+      "LOW": 1662
+    },
+    "queues": {
+      "INVESTIGATE_NOW": 49,
+      "REQUEST_MORE_DATA": 203,
+      "MONITOR": 1996
+    }
+  }
+}

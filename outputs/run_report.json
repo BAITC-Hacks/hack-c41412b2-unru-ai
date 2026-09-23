@@ -39,8 +39,20 @@
     "coordinator": 53
   },
   "clusters": 91,
+  "triage_summary": {
+    "observability": {
+      "HIGH": 117,
+      "MEDIUM": 469,
+      "LOW": 1662
+    },
+    "queues": {
+      "INVESTIGATE_NOW": 49,
+      "REQUEST_MORE_DATA": 203,
+      "MONITOR": 1996
+    }
+  },
   "boundary_terminal_count": 0,
-  "elapsed_seconds": 0.3113,
+  "elapsed_seconds": 0.2765,
   "versions": {
     "python": "3.12.14",
     "pandas": "3.0.6",
