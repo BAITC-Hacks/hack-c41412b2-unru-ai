@@ -52,7 +52,7 @@
     }
   },
   "boundary_terminal_count": 0,
-  "elapsed_seconds": 0.3935,
+  "elapsed_seconds": 0.3847,
   "versions": {
     "python": "3.12.14",
     "pandas": "3.0.6",

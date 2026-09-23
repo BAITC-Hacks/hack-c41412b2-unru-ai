@@ -1,0 +1,39 @@
+{
+  "tests_passed": 39,
+  "full_process_seconds": 0.5876,
+  "pipeline_seconds": 0.3564,
+  "frozen_outputs_match_phase2": true,
+  "nonzero_dominators": 539,
+  "top_examples": [
+    {
+      "gid": "100000002527114100",
+      "dominated_nodes": 269,
+      "dominated_clusters": 1
+    },
+    {
+      "gid": "100000001697501100",
+      "dominated_nodes": 157,
+      "dominated_clusters": 1
+    },
+    {
+      "gid": "100000002578405100",
+      "dominated_nodes": 119,
+      "dominated_clusters": 1
+    },
+    {
+      "gid": "100000003016635100",
+      "dominated_nodes": 102,
+      "dominated_clusters": 10
+    },
+    {
+      "gid": "100000000331309100",
+      "dominated_nodes": 97,
+      "dominated_clusters": 4
+    }
+  ],
+  "browser_checked": [
+    "100000003037476100",
+    "100000003016635100"
+  ],
+  "browser_js_errors": 0
+}

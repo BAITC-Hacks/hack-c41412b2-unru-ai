@@ -100,3 +100,14 @@ def test_read_only_download_whitelist_and_static_ui(client):
     assert client.get('/assets/app.js').status_code==200
     assert client.get('/assets/style.css').status_code==200
     assert before=={name:hashlib.sha256((ROOT/'outputs'/name).read_bytes()).hexdigest() for name in DOWNLOADS}
+
+
+def test_structural_evidence_api_keeps_na_distinct_from_observed_zero(client):
+    n=client.get('/api/nodes/100000003037476100').json()
+    assert n['out_degree']==0  # actual observed record count remains unchanged
+    assert n['evidence_availability']['fan_out']=='CENSORED'
+    assert n['evidence_details']['fan_out']['value'] is None
+    assert n['evidence_details']['terminal']['value'] is None
+    assert n['evidence_details']['fan_in']['value']==3
+    d=client.get('/api/nodes/100000003016635100').json()['structural_dependency']
+    assert d['dominated_nodes']==102 and d['dominated_clusters']==10

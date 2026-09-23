@@ -36,6 +36,11 @@ class Store:
             for field in ['in_kzt', 'out_kzt', 'in_degree', 'out_degree', 'in_tx', 'out_tx', 'in_days', 'out_days',
                           'neighbor_count', 'pagerank', 'reachable_seed_count', 'observed_out_in_ratio']:
                 node['metrics'][field] = node[field]
+        evidence = json.loads((self.out / 'structural_evidence.json').read_text())
+        if set(self.nodes) != {n['gid'] for n in evidence['nodes']}:
+            raise ValueError('Structural evidence coverage mismatch; rerun pipeline')
+        for record in evidence['nodes']:
+            self.nodes[record['gid']].update(record)
         self.edges, self.adj = [], {gid: set() for gid in self.nodes}
         for row in pd.read_parquet(Path(data) / 'edges.parquet').itertuples(index=False):
             edge = {'src': str(row.src), 'dst': str(row.dst), 'sum_kzt': float(row.sum_kzt), 'n_tx': int(row.n_tx)}

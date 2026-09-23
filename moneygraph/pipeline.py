@@ -8,7 +8,7 @@ import time
 from pathlib import Path
 import networkx as nx
 import pandas as pd
-from . import communities, features, roles, observability
+from . import communities, features, roles, observability, evidence
 from .io import NODE_COLUMNS, load_data, validate_outputs
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -29,6 +29,7 @@ def run(data=DEFAULT_DATA, out=ROOT / 'outputs', top_n=50):
     top.insert(0, 'rank', range(1, len(top) + 1))
     validate_outputs(node_output, clusters, top, nodes.gid)
     context = observability.build_context(f)
+    structural_evidence = evidence.build(graph, f)
     delta = f.out_tiyn - f.in_tiyn
     comparisons = {}
     for label, mask in [('all', pd.Series(True, index=f.index)), ('seed', f.is_seed), ('non_seed', ~f.is_seed),
@@ -57,6 +58,7 @@ def run(data=DEFAULT_DATA, out=ROOT / 'outputs', top_n=50):
         for name, frame in [('nodes_roles.csv', node_output), ('clusters.csv', clusters), ('top_nodes.csv', top)]:
             frame.to_csv(stage / name, index=False, float_format='%.10f')
         (stage / 'node_context.json').write_text(json.dumps(context, ensure_ascii=False, indent=2, allow_nan=False) + '\n')
+        (stage / 'structural_evidence.json').write_text(json.dumps(structural_evidence, ensure_ascii=False, indent=2, allow_nan=False) + '\n')
         report['elapsed_seconds'] = round(time.perf_counter() - start, 4)
         (stage / 'run_report.json').write_text(json.dumps(report, ensure_ascii=False, indent=2) + '\n')
         for file in stage.iterdir():
