@@ -15,10 +15,10 @@ body.graph-page{--text:15px;--secondary:13px;--micro:12px;font-size:var(--text);
 .graph-page .queue-panel .panel-head .small{display:none}
 .graph-page .queue-tabs{flex-shrink:0;padding:10px 8px 0}.graph-page .queue-tabs button{font-size:12px;padding:7px 4px}.graph-page .queue-tabs span{font-size:12px}
 .graph-page .queue-description{font-size:13px;margin:10px 14px;min-height:0}
-.graph-page .queue-list{flex:1;min-height:0;max-height:none;overscroll-behavior:contain}
+.graph-page .queue-list{flex:1;min-height:0;max-height:none;overscroll-behavior:auto}
 .graph-page .queue-item{padding:12px}.graph-page .queue-item .id{font-size:15px}.graph-page .queue-item .row{font-size:14px;gap:8px;align-items:start;margin-top:6px}.graph-page .queue-item .score{font-size:15px;flex-shrink:0}.graph-page .queue-item .obs{font-size:12px;letter-spacing:0}
 .graph-page .pagination{padding:8px 12px;flex-shrink:0}.graph-page .pagination span{font-size:13px}
-.graph-page .graph-panel{display:flex;flex-direction:column;overflow-y:auto;overscroll-behavior:contain}
+.graph-page .graph-panel{display:flex;flex-direction:column;overflow-y:auto;overscroll-behavior:auto}
 .graph-page .graph-panel>.panel-head{flex-shrink:0}.graph-page .graph-subtitle{overflow-wrap:anywhere}
 .graph-page .graph-toolbar{padding:8px 12px;font-size:12px;flex-shrink:0}.graph-page .graph-toolbar>span{display:none}.graph-page .graph-toolbar>div{width:100%;gap:6px}.graph-page .graph-toolbar button{font-size:13px;padding:5px 8px}
 .graph-page .graph-viewport{height:auto;min-height:340px;flex:1 0 340px;overflow:hidden}
@@ -26,7 +26,7 @@ body.graph-page{--text:15px;--secondary:13px;--micro:12px;font-size:var(--text);
 .graph-page .edge-details{font-size:13px;flex-shrink:0}.graph-page .edge-details summary{padding:9px 12px}.graph-page .cluster-panel{padding:10px 12px;flex-shrink:0}.graph-page .cluster-panel:empty{display:none}.graph-page .cluster-panel p{font-size:13px}.graph-page .cluster-panel button{font-size:12px}
 .graph-page .node-card{display:flex;flex-direction:column;overflow:hidden}.graph-page .card-header{flex-shrink:0;padding:12px 16px}.graph-page .full-gid{font-size:16px;margin-bottom:8px;letter-spacing:0}.graph-page .card-header .eyebrow{margin-bottom:5px}
 .graph-page .inspector-tabs{display:flex;flex-wrap:wrap;gap:4px;padding:8px 10px;border-bottom:1px solid var(--line);flex-shrink:0;background:#f7f9fb}.graph-page .inspector-tabs button{font-size:12px;padding:6px 7px;border-color:transparent}.graph-page .inspector-tabs [aria-selected=true]{color:#076c65;background:#e5f2ef;border-color:#bedbd5;font-weight:650}
-.graph-page .inspector-content{overflow-y:auto;overflow-x:hidden;min-height:0;flex:1;overscroll-behavior:contain}.graph-page .card-section{padding:13px 16px}.graph-page .hypothesis strong{font-size:19px}.graph-page .hypothesis .value{font-size:20px;flex-shrink:0}.graph-page .alternative .hypothesis strong{font-size:15px}.graph-page .alternative .value{font-size:16px}
+.graph-page .inspector-content{overflow-y:auto;overflow-x:hidden;min-height:0;flex:1;overscroll-behavior:auto}.graph-page .card-section{padding:13px 16px}.graph-page .hypothesis strong{font-size:19px}.graph-page .hypothesis .value{font-size:20px;flex-shrink:0}.graph-page .alternative .hypothesis strong{font-size:15px}.graph-page .alternative .value{font-size:16px}
 .graph-page .label{margin-bottom:6px}.graph-page .explanation{font-size:13px;line-height:1.5}.graph-page .card-section p.body,.graph-page .request p{font-size:15px;line-height:1.5}.graph-page .request .explanation{font-size:13px}.graph-page .scores strong{font-size:25px}.graph-page .scores .method-link{font-size:12px;margin:2px 0}.graph-page .fact span{font-size:13px}.graph-page .fact b{font-size:15px;overflow-wrap:anywhere}.graph-page .facts{gap:14px 12px}
 .graph-page .limitations li,.graph-page .availability-row{font-size:13px}.graph-page .availability-row b{font-size:13px}.graph-page .notice{font-size:13px}.graph-page table,.graph-page th,.graph-page td button,.graph-page .patterns table,.graph-page .patterns button{font-size:12px}.graph-page .patterns td,.graph-page .patterns th{white-space:normal;overflow-wrap:anywhere}.graph-page .patterns p{font-size:13px}.graph-page .patterns summary{font-size:14px}.graph-page .patterns ul{padding-left:16px}.graph-page .patterns button{max-width:100%}
 .graph-page .ai-panel{margin-top:18px;padding:18px}.graph-page .ai-panel .panel-head{padding:0 0 12px}.graph-page .resilience-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:12px 0}.graph-page .resilience-kpis>div{background:#f4f7f9;border:1px solid var(--line);border-radius:8px;padding:12px}.graph-page .resilience-kpis span{display:block;font-size:13px;color:var(--muted)}.graph-page .resilience-kpis strong{font-size:22px;display:block;margin-top:5px}.graph-page .resilience-details summary{cursor:pointer;font-size:14px;color:var(--teal)}
@@ -41,7 +41,17 @@ body.graph-page{--text:15px;--secondary:13px;--micro:12px;font-size:var(--text);
 /* Preserve existing zoom/pan behavior inside the graph, never on the page. */
 .graph-page .graph-viewport{overflow:auto}
 .graph-page .edge-label{fill:#304861;stroke:none;font-weight:600}
-.graph-page .edge-hit{cursor:pointer;outline:none}.graph-page .graph-edge.edge-active{stroke:#244b70!important;opacity:1!important;stroke-width:5}
+.graph-page .edge-hit{cursor:pointer;outline:none}.graph-page .graph-edge.edge-active{stroke:var(--edge-color)!important;opacity:1!important;stroke-width:5}
 .graph-page .edge-tooltip{position:fixed;z-index:1000;pointer-events:none;width:330px;max-width:calc(100vw - 24px);padding:14px;background:#fff;border:1px solid #bccddc;border-radius:10px;box-shadow:0 6px 24px #19283e26;font-size:13px;line-height:1.4;color:var(--ink)}
 .graph-page .edge-direction{font-weight:650;color:var(--teal);font-size:13px;margin-bottom:10px}.graph-page .edge-endpoint{font-size:13px;margin:7px 0}.graph-page .edge-endpoint b{font-weight:500;color:var(--muted);display:block;font-size:12px}.graph-page .edge-endpoint span,.graph-page .edge-endpoint button{font:14px ui-monospace,monospace;overflow-wrap:anywhere}.graph-page .edge-endpoint small{font-size:12px;margin-left:7px}.graph-page .edge-totals{display:flex;justify-content:space-between;gap:12px;align-items:center;border-top:1px solid var(--line);padding-top:10px;margin-top:10px}.graph-page .edge-totals strong{font-size:17px}.graph-page .edge-tooltip p{font-size:12px;color:var(--muted);margin:9px 0 0}
 .graph-page .edge-inspection{padding:14px;border-top:1px solid var(--line);background:#f4f8fa;flex-shrink:0}.graph-page .edge-detail-head{display:flex;justify-content:space-between;align-items:center;gap:10px}.graph-page .edge-detail-head h3{font-size:16px}.graph-page .edge-close{font-size:20px;padding:2px 10px}.graph-page .edge-inspection .edge-endpoint button{padding:3px 6px;color:#245979;max-width:100%}
+
+.graph-page .graph-edge:hover{stroke:var(--edge-color)!important;opacity:1!important}
+.graph-page .graph-edge.pattern-highlight{stroke:#e87524!important;marker-end:url(#arrow-pattern);opacity:1!important}
+.graph-page .role-legend-item{display:inline-flex;align-items:center;gap:4px}
+.graph-page .role-help-button{display:inline-flex;align-items:center;justify-content:center;min-width:24px;min-height:24px;padding:0;border:0;background:transparent;color:#526b83;font-size:16px;cursor:help;line-height:1}
+.graph-page .role-help-button:hover,.graph-page .role-help-button[aria-pressed=true]{background:#e5f2ef;color:#076c65;border-radius:50%}
+.graph-page .role-help-button:focus-visible{outline:2px solid #198b85;outline-offset:2px}
+.graph-page .role-help-popup{position:fixed;z-index:1001;width:310px;max-width:calc(100vw - 24px);box-sizing:border-box;padding:12px 14px;border:1px solid #bccddc;border-radius:10px;background:#fff;color:var(--ink);box-shadow:0 6px 24px #19283e26;font-size:13px;line-height:1.5}
+
+.graph-page .role-legend-item .role-dot{width:14px;height:14px;min-width:14px;flex:0 0 14px;border-radius:50%;margin-right:3px;box-shadow:0 0 0 2px #fff;vertical-align:middle}

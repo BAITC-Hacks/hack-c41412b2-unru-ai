@@ -177,7 +177,11 @@ function renderGraph(data) {
   function place(nodes,leftSide) { const columns=Math.max(1,Math.ceil(nodes.length/12)); const rows=Math.min(12,nodes.length); nodes.forEach((n,index)=>{const col=Math.floor(index/12),row=index%12; positions.set(n.gid,{x:leftSide?100+col*360/columns:1100-col*360/columns,y:rows===1?320:90+row*460/(rows-1)});}); }
   place(left,true);place(right,false);
   svg.setAttribute('viewBox',`0 0 1200 ${height}`); svg.setAttribute('aria-label',`Направленный граф узла ${data.center_gid}, соседей ${data.total_neighbors}`);
-  const defs=svgEl('defs'); const marker=svgEl('marker',{id:'arrow',viewBox:'0 0 10 10',refX:9,refY:5,markerWidth:5,markerHeight:5,orient:'auto-start-reverse'});marker.append(svgEl('path',{d:'M 0 0 L 10 5 L 0 10 z',fill:'#8194ad'}));defs.append(marker);svg.append(defs);
+  const defs=svgEl('defs');
+  Object.entries({...colors,pattern:'#e87524'}).forEach(([role,color])=>{
+    const marker=svgEl('marker',{id:'arrow-'+role,viewBox:'0 0 10 10',refX:9,refY:5,markerWidth:5,markerHeight:5,orient:'auto-start-reverse'});
+    marker.append(svgEl('path',{d:'M 0 0 L 10 5 L 0 10 z',fill:color}));defs.append(marker);
+  });svg.append(defs);
   svg.append(svgEl('text',{x:110,y:40,class:'node-label'},'ОТПРАВИТЕЛИ / ВЗАИМНЫЕ СВЯЗИ'));
   svg.append(svgEl('text',{x:970,y:40,class:'node-label'},'ПОЛУЧАТЕЛИ'));
   const maxLog=Math.max(1,...data.edges.map(e=>Math.log1p(e.sum_kzt)));
@@ -187,7 +191,9 @@ function renderGraph(data) {
     const a=positions.get(e.src),b=positions.get(e.dst);
     const reciprocal=data.edges.some(other=>other.src===e.dst&&other.dst===e.src);
     const geometry=edgeGeometry(a,b,e.src===data.center_gid?26:15,e.dst===data.center_gid?26:15,reciprocal);
-    const line=svgEl('path',{d:geometry.path,fill:'none',stroke:'#7890aa','stroke-width':2+3*Math.log1p(e.sum_kzt)/maxLog,opacity:.8,'marker-end':'url(#arrow)',class:'graph-edge','data-src':e.src,'data-dst':e.dst});
+    const sourceRole=Object.hasOwn(colors,edgeNodes.get(e.src)?.role)?edgeNodes.get(e.src).role:'peripheral';
+    const edgeColor=colors[sourceRole];
+    const line=svgEl('path',{d:geometry.path,fill:'none',stroke:edgeColor,style:`--edge-color:${edgeColor}`,'stroke-width':2+3*Math.log1p(e.sum_kzt)/maxLog,opacity:.65,'marker-end':`url(#arrow-${sourceRole})`,class:'graph-edge','data-src':e.src,'data-dst':e.dst});
     svg.append(line);
     const hit=svgEl('path',{d:geometry.path,fill:'none',stroke:'transparent','stroke-width':18,'pointer-events':'stroke',class:'edge-hit',tabindex:0,role:'button','aria-label':`Связь ${e.src} → ${e.dst}, ${fmt(e.sum_kzt)} KZT, переводов ${e.n_tx}`,'aria-describedby':'edge-tooltip'});
     edgeInspector.bind(hit,line,e,edgeNodes,data.center_gid);svg.append(hit);
@@ -216,7 +222,7 @@ function renderGraph(data) {
   });
   if(!data.edges.length) svg.append(svgEl('text',{x:600,y:460,'text-anchor':'middle',class:'node-label'},'Изолированный узел: связей в выгрузке нет'));
   applyZoom();
-  $('role-legend').innerHTML=Object.keys(colors).map(role=>`<span>${dot(role)}${role}</span>`).join('');
+  renderRoleLegend(colors);
   $('edge-count').textContent=`· ${data.edges.length}`;
   $('edge-table').innerHTML=data.edges.length?`<table><thead><tr><th>Отправитель → получатель</th><th>KZT</th><th>Переводы</th></tr></thead><tbody>${data.edges.map(e=>`<tr><td><button data-gid="${esc(e.src)}">${esc(e.src)}</button> → <button data-gid="${esc(e.dst)}">${esc(e.dst)}</button></td><td>${fmt(e.sum_kzt)}</td><td>${e.n_tx}</td></tr>`).join('')}</tbody></table>`:'<p class="graph-help">Наблюдаемых переводов нет.</p>';
   attachNodeLinks($('edge-table'));
