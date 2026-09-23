@@ -1,0 +1,20 @@
+{
+  "full_process_to_http_ready_seconds": 1.0059,
+  "pipeline_seconds": 0.3554,
+  "store_load_seconds": 0.0604,
+  "tests_passed": 29,
+  "exact_gid_searches_tested": 2248,
+  "demo_gids": [
+    "100000003115284100",
+    "100000003684369100",
+    "100000003037476100"
+  ],
+  "random_ui_gids": [
+    "100000002521039100",
+    "100000004850609100",
+    "100000008688155100"
+  ],
+  "isolated_ui_gid": "100000000456947100",
+  "frontend_js_errors_observed": 0,
+  "phase1_csv_and_phase2_context_byte_identical": true
+}
