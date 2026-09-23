@@ -1,0 +1,12 @@
+const {readFileSync}=require('node:fs');
+const {runInNewContext}=require('node:vm');
+const assert=require('node:assert/strict');
+const ctx={};runInNewContext(readFileSync('web/i18n.js','utf8')+'\nthis.localize=MoneyGraphUI.localize;',ctx);
+const t=ctx.localize;
+assert.equal(t('consolidator · HIGH · CENSORED'),'точка консолидации · Высокая · Обрезано выборкой');
+assert.equal(t('GID 100000008603629100 · 1 550 917 KZT'),'ID узла 100000008603629100 · 1 550 917 ₸');
+assert.equal(t('role_score primary_role priority_score'),'сила признаков роли основная гипотеза приоритет проверки');
+assert.equal(t('MoneyGraph Investigator OpenAI PageRank Louvain JSON SHA-256'),'MoneyGraph Investigator OpenAI PageRank Louvain JSON SHA-256');
+assert.equal(t('OPENAI_API_KEY get_node_profile'),'OPENAI_API_KEY Профиль узла');
+const sample='Пригодность наблюдений: HIGH; от 7 seed; gather→scatter; N/A';assert.equal(t(t(sample)),t(sample));
+console.log('6 localization checks passed (labels, exact IDs, fields, technical names, tokens, idempotence)');

@@ -12,6 +12,10 @@ function showRecord(record){
  for(const gid of [record.gid,record.compare_gid].filter(Boolean)){const a=text('a',gid,nodes);a.href='/?gid='+encodeURIComponent(gid);text('span',' ',nodes);}
  const names={conclusion:'Вывод модели',why:'Наблюдаемые основания',alternative:'Альтернатива',evidence_against:'Что ослабляет гипотезу',limitation:'Ограничение',next_step:'Предложенный следующий шаг'};
  for(const [field,label]of Object.entries(names)){const section=text('section','',root);text('h4',label,section);text('p',Array.isArray(result.answer[field])?result.answer[field].join('\n'):result.answer[field],section);}
+ const original=text('details','',root);original.setAttribute('data-original','');
+ text('summary','Исходный ответ модели без замены терминов',original);
+ text('p',JSON.stringify({question:record.question,answer:result.answer},null,2),original);
+ text('p','Для чтения технические термины выше заменены русскими названиями. Исходная запись и проверяемые хеши не изменены.',root).className='explanation';
  const log=text('details','',root);text('summary','Журнал инструментов исходного запроса',log);
  text('p',result.trace.map(t=>`${t.source_id} · ${t.tool} (${Object.values(t.arguments).join(', ')})`).join('\n'),log);
  text('p','Это сохранённый результат. Инструменты сейчас не выполнялись; модель могла допустить ошибки интерпретации.',root).className='explanation';
