@@ -40,3 +40,4 @@ body.graph-page{--text:15px;--secondary:13px;--micro:12px;font-size:var(--text);
 .graph-page .cluster-details{flex-shrink:0;border-top:1px solid var(--line);font-size:13px}.graph-page .cluster-details>summary{cursor:pointer;padding:10px 12px}.graph-page .cluster-details .cluster-panel{border-top:0}
 /* Preserve existing zoom/pan behavior inside the graph, never on the page. */
 .graph-page .graph-viewport{overflow:auto}
+.graph-page .edge-label{fill:#304861;stroke:none;font-weight:600}

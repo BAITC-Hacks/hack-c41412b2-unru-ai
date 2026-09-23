@@ -1,0 +1,13 @@
+const {readFileSync}=require('node:fs'),{runInNewContext}=require('node:vm'),assert=require('node:assert/strict');
+const source=readFileSync('web/app.js','utf8'),ctx={};runInNewContext(source.slice(source.indexOf('function edgeGeometry('),source.indexOf('function renderGraph(')),ctx);
+const a={x:100,y:320},b={x:600,y:320};
+const forward=ctx.edgeGeometry(a,b,15,26,true),reverse=ctx.edgeGeometry(b,a,26,15,true);
+assert.ok(forward.label.y>320&&reverse.label.y<320);assert.ok(Math.abs(forward.label.y-reverse.label.y)>80);
+assert.ok(Math.abs(forward.label.x-reverse.label.x)>100);
+assert.ok(Math.abs(Math.hypot(forward.start.x-a.x,forward.start.y-a.y)-15)<1e-9);
+assert.ok(Math.abs(Math.hypot(forward.end.x-b.x,forward.end.y-b.y)-26)<1e-9);
+assert.equal(ctx.edgeGeometry(a,b,15,26,false).start.y,320);
+console.log('3 edge geometry checks passed: reciprocal separation, node clearance, straight one-way flow');
+const boxes=[];const first=ctx.placeEdgeLabel({x:200,y:200},120,boxes),second=ctx.placeEdgeLabel({x:200,y:200},120,boxes);
+assert.notEqual(first.y,second.y);assert.ok(Math.abs(first.y-second.y)>=40);
+console.log('1 amount collision check passed');

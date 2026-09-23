@@ -138,6 +138,29 @@ function organizeInspector() {
 }
 const NS='http://www.w3.org/2000/svg';
 function svgEl(tag,attrs={},text) { const el=document.createElementNS(NS,tag); for(const [k,v] of Object.entries(attrs)) el.setAttribute(k,String(v)); if(text!==undefined) el.textContent=text; return el; }
+// Opposite directions use opposite normals, keeping curves and amounts apart.
+function edgeGeometry(a,b,radiusA,radiusB,reciprocal) {
+  const dx=b.x-a.x,dy=b.y-a.y,d=Math.hypot(dx,dy)||1,nx=-dy/d,ny=dx/d;
+  const bend=reciprocal?76:0,c={x:(a.x+b.x)/2+nx*bend,y:(a.y+b.y)/2+ny*bend};
+  const da=Math.hypot(c.x-a.x,c.y-a.y)||1,db=Math.hypot(b.x-c.x,b.y-c.y)||1;
+  const start={x:a.x+(c.x-a.x)/da*radiusA,y:a.y+(c.y-a.y)/da*radiusA};
+  const end={x:b.x-(b.x-c.x)/db*radiusB,y:b.y-(b.y-c.y)/db*radiusB};
+  const t=reciprocal?.36:.5,u=1-t;
+  const mid={x:u*u*start.x+2*u*t*c.x+t*t*end.x,y:u*u*start.y+2*u*t*c.y+t*t*end.y};
+  return {path:`M ${start.x} ${start.y} Q ${c.x} ${c.y} ${end.x} ${end.y}`,start,end,
+    label:{x:mid.x+nx*(reciprocal?12:0),y:mid.y+(reciprocal?ny*12:-20)}};
+}
+function placeEdgeLabel(origin,width,boxes) {
+  const x=origin.x;
+  for(let step=0;step<20;step++) {
+    const y=origin.y+(step===0?0:(step%2?1:-1)*Math.ceil(step/2)*42);
+    const box={left:x-width/2-5,right:x+width/2+5,top:y-20,bottom:y+20};
+    if(!boxes.some(b=>box.left<b.right&&box.right>b.left&&box.top<b.bottom&&box.bottom>b.top)) {
+      boxes.push(box);return {x,y};
+    }
+  }
+  return origin;
+}
 function renderGraph(data) {
   const svg=$('network'); svg.replaceChildren();
   const selectedCluster=data.nodes.find(n=>n.gid===data.center_gid).cluster_id;
@@ -157,15 +180,25 @@ function renderGraph(data) {
   svg.append(svgEl('text',{x:110,y:40,class:'node-label'},'ОТПРАВИТЕЛИ / ВЗАИМНЫЕ СВЯЗИ'));
   svg.append(svgEl('text',{x:970,y:40,class:'node-label'},'ПОЛУЧАТЕЛИ'));
   const maxLog=Math.max(1,...data.edges.map(e=>Math.log1p(e.sum_kzt)));
+  const edgeLabels=[],labelBoxes=[];
   data.edges.forEach(e=>{
-    const a=positions.get(e.src),b=positions.get(e.dst); const dx=b.x-a.x,dy=b.y-a.y,d=Math.hypot(dx,dy)||1;
-    const radiusA=e.src===data.center_gid?26:15,radiusB=e.dst===data.center_gid?26:15;
-    const reciprocal=data.edges.some(other=>other.src===e.dst&&other.dst===e.src);const offset=reciprocal?5:0;
-    const x1=a.x+dx/d*radiusA-dy/d*offset,y1=a.y+dy/d*radiusA+dx/d*offset,x2=b.x-dx/d*radiusB-dy/d*offset,y2=b.y-dy/d*radiusB+dx/d*offset;
-    const line=svgEl('line',{x1,y1,x2,y2,stroke:'#90a5be','stroke-width':2+3*Math.log1p(e.sum_kzt)/maxLog,opacity:.62,'marker-end':'url(#arrow)',class:'graph-edge','data-src':e.src,'data-dst':e.dst});
+    const a=positions.get(e.src),b=positions.get(e.dst);
+    const reciprocal=data.edges.some(other=>other.src===e.dst&&other.dst===e.src);
+    const geometry=edgeGeometry(a,b,e.src===data.center_gid?26:15,e.dst===data.center_gid?26:15,reciprocal);
+    const line=svgEl('path',{d:geometry.path,fill:'none',stroke:'#7890aa','stroke-width':2+3*Math.log1p(e.sum_kzt)/maxLog,opacity:.8,'marker-end':'url(#arrow)',class:'graph-edge','data-src':e.src,'data-dst':e.dst});
     line.append(svgEl('title',{},`${e.src} → ${e.dst}\n${fmt(e.sum_kzt)} KZT · ${e.n_tx} переводов`));svg.append(line);
-    if(data.edges.length<=8) svg.append(svgEl('text',{x:(x1+x2)/2,y:(y1+y2)/2-7,'text-anchor':'middle',class:'edge-label'},`${fmt(e.sum_kzt)} KZT`));
+    if(data.edges.length<=8) {
+      const label=`${fmt(e.sum_kzt)} ₸`,width=label.length*12+16;
+      const origin={...geometry.label};
+      geometry.label=placeEdgeLabel(origin,width,labelBoxes);
+      const group=svgEl('g',{'pointer-events':'none',class:'edge-amount'});
+      if(geometry.label.y!==origin.y) group.append(svgEl('line',{x1:origin.x,y1:origin.y,x2:geometry.label.x,y2:geometry.label.y,stroke:'#7890aa','stroke-width':1}));
+      group.append(svgEl('rect',{x:geometry.label.x-width/2,y:geometry.label.y-16,width,height:32,rx:6,fill:'#fff','fill-opacity':.96,stroke:'#e0e7ee'}));
+      group.append(svgEl('text',{x:geometry.label.x,y:geometry.label.y+1,'text-anchor':'middle','dominant-baseline':'middle',class:'edge-label'},label));
+      edgeLabels.push(group);
+    }
   });
+  edgeLabels.forEach(label=>svg.append(label));
   data.nodes.forEach(n=>{
     const p=positions.get(n.gid),center=n.gid===data.center_gid;
     const group=svgEl('g',{class:'graph-node'+(n.cluster_id===selectedCluster?' same-cluster':''),tabindex:0,role:'button','aria-label':`Открыть GID ${n.gid}, ${n.role}`});
