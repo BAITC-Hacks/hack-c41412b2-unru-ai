@@ -1,0 +1,208 @@
+{
+  "python_tests": 72,
+  "python_test_seconds": 8.05,
+  "js_checks": 3,
+  "diagnostic_build_seconds": 0.4975,
+  "pipeline_store_startup_seconds": 0.567,
+  "summary": {
+    "parameter": {
+      "runs": 10,
+      "mean_top20_jaccard": 0.9666666666666666,
+      "scenarios": [
+        {
+          "id": "volume_plus10",
+          "top20_jaccard": 1.0
+        },
+        {
+          "id": "volume_minus10",
+          "top20_jaccard": 1.0
+        },
+        {
+          "id": "neighbors_plus10",
+          "top20_jaccard": 1.0
+        },
+        {
+          "id": "neighbors_minus10",
+          "top20_jaccard": 1.0
+        },
+        {
+          "id": "seed_reach_plus10",
+          "top20_jaccard": 1.0
+        },
+        {
+          "id": "without_pagerank",
+          "top20_jaccard": 0.6666666666666666
+        },
+        {
+          "id": "role_first_component_plus10",
+          "top20_jaccard": 1.0
+        },
+        {
+          "id": "role_first_component_minus10",
+          "top20_jaccard": 1.0
+        },
+        {
+          "id": "thresholds_stricter",
+          "top20_jaccard": 1.0
+        },
+        {
+          "id": "thresholds_looser",
+          "top20_jaccard": 1.0
+        }
+      ],
+      "role_status_counts": {
+        "STABLE": 2211,
+        "NOT_EVALUABLE": 19,
+        "SENSITIVE": 18
+      }
+    },
+    "edge_dropout": {
+      "runs": 3,
+      "mean_top20_jaccard": 0.9076479076479077,
+      "scenarios": [
+        {
+          "id": "drop5_seed42",
+          "top20_jaccard": 1.0
+        },
+        {
+          "id": "drop5_seed43",
+          "top20_jaccard": 0.8181818181818182
+        },
+        {
+          "id": "drop5_seed44",
+          "top20_jaccard": 0.9047619047619048
+        }
+      ],
+      "role_status_counts": {
+        "STABLE": 2132,
+        "SENSITIVE": 97,
+        "NOT_EVALUABLE": 19
+      }
+    }
+  },
+  "role_match_distribution": {
+    "parameter": {
+      "9": 426,
+      "10": 1785,
+      "8": 18,
+      "None": 19
+    },
+    "edge_dropout": {
+      "3": 2132,
+      "2": 85,
+      "None": 19,
+      "0": 2,
+      "1": 10
+    }
+  },
+  "examples": [
+    {
+      "gid": "100000003684369100",
+      "baseline_role": "coordinator",
+      "baseline_rank": 1,
+      "baseline_top20": true,
+      "status": "AVAILABLE",
+      "parameter": {
+        "runs": 10,
+        "role_matches": 10,
+        "role_stability": 1.0,
+        "top20_count": 10,
+        "top20_inclusion": 1.0,
+        "rank_range": [
+          1,
+          1
+        ],
+        "role_status": "STABLE",
+        "competing_roles": []
+      },
+      "edge_dropout": {
+        "runs": 3,
+        "role_matches": 3,
+        "role_stability": 1.0,
+        "top20_count": 3,
+        "top20_inclusion": 1.0,
+        "rank_range": [
+          1,
+          1
+        ],
+        "role_status": "STABLE",
+        "competing_roles": []
+      }
+    },
+    {
+      "gid": "100000004017410100",
+      "baseline_role": "distributor",
+      "baseline_rank": 105,
+      "baseline_top20": false,
+      "status": "AVAILABLE",
+      "parameter": {
+        "runs": 10,
+        "role_matches": 8,
+        "role_stability": 0.8,
+        "top20_count": 0,
+        "top20_inclusion": 0.0,
+        "rank_range": null,
+        "role_status": "SENSITIVE",
+        "competing_roles": [
+          "coordinator",
+          "peripheral"
+        ]
+      },
+      "edge_dropout": {
+        "runs": 3,
+        "role_matches": 2,
+        "role_stability": 0.6666666666666666,
+        "top20_count": 0,
+        "top20_inclusion": 0.0,
+        "rank_range": null,
+        "role_status": "SENSITIVE",
+        "competing_roles": [
+          "peripheral"
+        ]
+      }
+    },
+    {
+      "gid": "100000008346837100",
+      "baseline_role": "coordinator",
+      "baseline_rank": 16,
+      "baseline_top20": true,
+      "status": "AVAILABLE",
+      "parameter": {
+        "runs": 10,
+        "role_matches": 10,
+        "role_stability": 1.0,
+        "top20_count": 10,
+        "top20_inclusion": 1.0,
+        "rank_range": [
+          16,
+          18
+        ],
+        "role_status": "STABLE",
+        "competing_roles": []
+      },
+      "edge_dropout": {
+        "runs": 3,
+        "role_matches": 2,
+        "role_stability": 0.6666666666666666,
+        "top20_count": 1,
+        "top20_inclusion": 0.3333333333333333,
+        "rank_range": [
+          20,
+          22
+        ],
+        "role_status": "SENSITIVE",
+        "competing_roles": [
+          "distributor"
+        ]
+      }
+    }
+  ],
+  "browser_checked_gids": [
+    "100000003684369100",
+    "100000004017410100",
+    "100000008346837100"
+  ],
+  "console_errors": [],
+  "core_unchanged": true,
+  "ai_tools_prompt_unchanged": true
+}

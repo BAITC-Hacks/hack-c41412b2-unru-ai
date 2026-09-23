@@ -56,6 +56,22 @@ class Store:
             raise ValueError('Seed convergence coverage mismatch; rerun pipeline')
         for record in convergence['nodes']:
             self.nodes[record['gid']].update(record)
+        self.stability_summary = {'available':False,'message':'Диагностика не рассчитана: python -m moneygraph.stability'}
+        for node in self.nodes.values(): node['stability'] = None
+        diagnostic_path = self.out / 'stability.json'
+        if diagnostic_path.is_file():
+            try:
+                diagnostic = json.loads(diagnostic_path.read_text())
+                valid = diagnostic['input_sha256'] == self.report['input_sha256']
+                valid = valid and all(hashlib.sha256((self.out/name).read_bytes()).hexdigest()==sha for name,sha in diagnostic['calculation_sha256'].items())
+                valid = valid and set(self.nodes)=={r['gid'] for r in diagnostic['nodes']}
+                if valid:
+                    for record in diagnostic['nodes']: self.nodes[record['gid']]['stability']=record
+                    self.stability_summary={'available':True,'summary':diagnostic['summary'],'scope':diagnostic['scope'],'elapsed_seconds':diagnostic['elapsed_seconds']}
+                else:
+                    self.stability_summary={'available':False,'message':'Stability относится к другой версии данных/расчётов; пересчитайте диагностику.'}
+            except (OSError,ValueError,KeyError,TypeError):
+                self.stability_summary={'available':False,'message':'Файл Stability повреждён; основная аналитика доступна.'}
         self.edges, self.adj = [], {gid: set() for gid in self.nodes}
         for row in pd.read_parquet(Path(data) / 'edges.parquet').itertuples(index=False):
             edge = {'src': str(row.src), 'dst': str(row.dst), 'sum_kzt': float(row.sum_kzt), 'n_tx': int(row.n_tx)}
@@ -117,6 +133,10 @@ def create_app(data=DEFAULT_DATA, out=ROOT / 'outputs'):
                 yield json.dumps(event, ensure_ascii=False, allow_nan=False) + '\n'
         return StreamingResponse(stream(), media_type='application/x-ndjson', headers={'Cache-Control':'no-store'})
 
+
+    @app.get('/api/stability/summary')
+    def stability_summary():
+        return store.stability_summary
 
     @app.get('/api/summary')
     def summary():
