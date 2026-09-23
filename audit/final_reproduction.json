@@ -1,0 +1,40 @@
+{
+  "date": "2026-09-23",
+  "source_commit": "336b6e3",
+  "clean_directory": "/private/tmp/moneygraph-final-20260923",
+  "python": "3.12.14",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "env_file_absent": true,
+  "installation": "python3.12 -m venv .venv; .venv/bin/python -m pip install -r requirements.txt",
+  "dependency_check": "pip check: no broken requirements",
+  "cold_pipeline_seconds": 5.1027,
+  "repeat_pipeline_seconds": 0.467,
+  "python_tests": 85,
+  "js_renderer_checks": 3,
+  "test_warning": "StarletteDeprecationWarning: httpx TestClient; all tests pass",
+  "csv": {
+    "nodes_roles.csv": {
+      "rows": 2248,
+      "sha256": "6546f308c2a18aa1ffd439806ed2cace53283462532429d5cc99c7c636993591"
+    },
+    "clusters.csv": {
+      "rows": 91,
+      "sha256": "80eccad28ac4c5e2f47bfb81a17c84ef3a840135b24d9f4c799ac37df268a0ae"
+    },
+    "top_nodes.csv": {
+      "rows": 50,
+      "sha256": "20197ec57bd1d27b371053be3e1de4e8ef8f59de7f8b05817d92c45ca950452b"
+    }
+  },
+  "random_seed": 23092026,
+  "browser_checked_gids": [
+    "100000006952718100",
+    "100000001534244100",
+    "100000000607731100"
+  ],
+  "browser_no_key_ui": "passed",
+  "offline_archive": "6 entries, hashes match, missing-GID state and saved response verified",
+  "browser_console_errors": [],
+  "git_secret_check": "No tracked .env; no OpenAI key-pattern matches in all reachable historical blobs at source_commit. Not a guarantee against all secret formats.",
+  "submission": "Not submitted; user explicitly deferred submission."
+}
